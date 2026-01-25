@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { motion } from "framer-motion";
 import { 
   Select,
   SelectContent,
@@ -20,7 +21,10 @@ import {
   Clock,
   CheckCircle,
   Send,
-  MessageCircle
+  MessageCircle,
+  Shield,
+  Award,
+  Users
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -136,104 +140,92 @@ const EnquiryPage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
-        <section className="py-12 md:py-16 hero-gradient relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <section className="pt-20 hero-gradient relative overflow-hidden">
+          <div className="absolute inset-0 grid-pattern opacity-20" />
           
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
-                Get in Touch
+          <div className="container mx-auto px-4 relative z-10 py-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-white/80 text-sm font-medium mb-6">
+                <MessageCircle className="w-4 h-4" />
+                Free Consultation
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Start Your Global Journey
               </h1>
-              <p className="text-lg text-primary-foreground/70">
+              <p className="text-lg text-white/60 max-w-xl mx-auto">
                 Book a free consultation with our expert counselors. We'll help you find the perfect path to your dream university and career.
               </p>
-            </div>
+            </motion.div>
+          </div>
+          
+          {/* Bottom Wave */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+              <path
+                d="M0 60L60 55C120 50 240 40 360 35C480 30 600 30 720 32.5C840 35 960 40 1080 42.5C1200 45 1320 45 1380 45L1440 45V60H0Z"
+                fill="hsl(var(--background))"
+              />
+            </svg>
           </div>
         </section>
 
         {/* Form Section */}
-        <section className="py-16 bg-background">
+        <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
               {/* Contact Info */}
-              <div className="lg:col-span-1">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="lg:col-span-2"
+              >
                 <h2 className="text-2xl font-bold text-foreground mb-6">
                   Contact Information
                 </h2>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-accent" />
+                <div className="space-y-5">
+                  {[
+                    { icon: Phone, label: "Phone", value: "+1 (234) 567-890", href: "tel:+1234567890", color: "bg-accent/10 text-accent" },
+                    { icon: Mail, label: "Email", value: "info@adityatej.com", href: "mailto:info@adityatej.com", color: "bg-teal/10 text-teal" },
+                    { icon: MessageCircle, label: "WhatsApp", value: "Quick queries", color: "bg-success/10 text-success" },
+                    { icon: MapPin, label: "Office", value: "123 Education Lane, Global City, 10001", color: "bg-primary/10 text-primary" },
+                    { icon: Clock, label: "Hours", value: "Mon - Sat: 9:00 AM - 7:00 PM", color: "bg-accent/10 text-accent" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center shrink-0`}>
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-0.5">{item.label}</h3>
+                        {item.href ? (
+                          <a href={item.href} className="text-muted-foreground hover:text-accent transition-colors text-sm">
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-muted-foreground text-sm">{item.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <a href="tel:+1234567890" className="text-muted-foreground hover:text-accent transition-colors">
-                        +1 (234) 567-890
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-teal" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <a href="mailto:info@adityatej.com" className="text-muted-foreground hover:text-accent transition-colors">
-                        info@adityatej.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center shrink-0">
-                      <MessageCircle className="w-5 h-5 text-success" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">WhatsApp</h3>
-                      <span className="text-muted-foreground">Available for quick queries</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Office</h3>
-                      <p className="text-muted-foreground">
-                        123 Education Lane,<br />
-                        Global City, 10001
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                      <Clock className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Hours</h3>
-                      <p className="text-muted-foreground">
-                        Mon - Sat: 9:00 AM - 7:00 PM<br />
-                        Sunday: By Appointment
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
                 {/* Trust Points */}
                 <div className="mt-10 p-6 rounded-2xl bg-secondary/50 border border-border">
-                  <h3 className="font-semibold text-foreground mb-4">Why Choose Us?</h3>
+                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-accent" />
+                    Why Choose Us?
+                  </h3>
                   <ul className="space-y-3">
                     {[
                       "Free initial consultation",
@@ -249,11 +241,16 @@ const EnquiryPage = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Form */}
-              <div className="lg:col-span-2">
-                <div className="bg-card rounded-3xl border border-border p-8 md:p-10">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="lg:col-span-3"
+              >
+                <div className="premium-card p-8 md:p-10">
                   <h2 className="text-2xl font-bold text-foreground mb-2">
                     Book Your Free Consultation
                   </h2>
@@ -262,7 +259,7 @@ const EnquiryPage = () => {
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       {/* Name */}
                       <div className="space-y-2">
                         <Label htmlFor="name">Full Name *</Label>
@@ -271,7 +268,7 @@ const EnquiryPage = () => {
                           placeholder="Enter your full name"
                           value={formData.name}
                           onChange={(e) => handleChange("name", e.target.value)}
-                          className={errors.name ? "border-destructive" : ""}
+                          className={`h-12 ${errors.name ? "border-destructive" : ""}`}
                         />
                         {errors.name && (
                           <p className="text-sm text-destructive">{errors.name}</p>
@@ -287,7 +284,7 @@ const EnquiryPage = () => {
                           placeholder="you@example.com"
                           value={formData.email}
                           onChange={(e) => handleChange("email", e.target.value)}
-                          className={errors.email ? "border-destructive" : ""}
+                          className={`h-12 ${errors.email ? "border-destructive" : ""}`}
                         />
                         {errors.email && (
                           <p className="text-sm text-destructive">{errors.email}</p>
@@ -303,7 +300,7 @@ const EnquiryPage = () => {
                           placeholder="+1 (234) 567-890"
                           value={formData.phone}
                           onChange={(e) => handleChange("phone", e.target.value)}
-                          className={errors.phone ? "border-destructive" : ""}
+                          className={`h-12 ${errors.phone ? "border-destructive" : ""}`}
                         />
                         {errors.phone && (
                           <p className="text-sm text-destructive">{errors.phone}</p>
@@ -317,7 +314,7 @@ const EnquiryPage = () => {
                           value={formData.country}
                           onValueChange={(value) => handleChange("country", value)}
                         >
-                          <SelectTrigger className={errors.country ? "border-destructive" : ""}>
+                          <SelectTrigger className={`h-12 ${errors.country ? "border-destructive" : ""}`}>
                             <SelectValue placeholder="Select a country" />
                           </SelectTrigger>
                           <SelectContent>
@@ -341,7 +338,7 @@ const EnquiryPage = () => {
                         value={formData.service}
                         onValueChange={(value) => handleChange("service", value)}
                       >
-                        <SelectTrigger className={errors.service ? "border-destructive" : ""}>
+                        <SelectTrigger className={`h-12 ${errors.service ? "border-destructive" : ""}`}>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
@@ -366,15 +363,15 @@ const EnquiryPage = () => {
                         value={formData.message}
                         onChange={(e) => handleChange("message", e.target.value)}
                         rows={4}
+                        className="resize-none"
                       />
                     </div>
 
                     {/* Submit */}
                     <Button
                       type="submit"
-                      variant="hero"
-                      size="xl"
-                      className="w-full"
+                      size="lg"
+                      className="w-full h-14 text-base font-semibold"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -395,7 +392,7 @@ const EnquiryPage = () => {
                     </p>
                   </form>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>

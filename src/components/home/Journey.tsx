@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Search, FileText, Stamp, BookOpen, Briefcase, Home, CheckCircle } from "lucide-react";
 
 const steps = [
@@ -41,35 +42,51 @@ const steps = [
 
 const Journey = () => {
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Subtle Background */}
+      <div className="absolute inset-0 grid-pattern-light opacity-30" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-teal/10 text-teal text-sm font-medium mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal/10 text-teal text-sm font-medium mb-4">
             Your Journey
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-foreground mb-4">
             From Dream to Reality in 6 Steps
           </h2>
-          <p className="text-muted-foreground text-lg">
-            We guide you through every milestone — from your first consultation to settling in your dream country.
+          <p className="text-lg text-muted-foreground">
+            We guide you through every milestone — from consultation to settling in your dream country.
           </p>
-        </div>
+        </motion.div>
 
         {/* Journey Timeline */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-success -translate-y-1/2 z-0" />
+        <div className="relative max-w-6xl mx-auto">
+          {/* Connection Line - Desktop */}
+          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-accent to-success z-0" />
 
           {/* Steps */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
             {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center text-center group">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col items-center text-center group"
+              >
                 {/* Icon Circle */}
-                <div className={`w-16 h-16 rounded-full ${step.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-all duration-300 relative`}>
-                  <step.icon className="w-7 h-7 text-white" />
-                  {/* Step Number */}
-                  <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-background border-2 border-border flex items-center justify-center text-xs font-bold text-foreground">
+                <div className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl ${step.color} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-all duration-300 relative`}>
+                  <step.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
+                  {/* Step Number Badge */}
+                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-background border-2 border-border flex items-center justify-center text-xs font-bold text-foreground shadow-sm">
                     {index + 1}
                   </div>
                 </div>
@@ -81,24 +98,30 @@ const Journey = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Trust Points */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
+        >
           {[
-            { text: "Personalized guidance at every step", icon: CheckCircle },
-            { text: "Transparent process & realistic timelines", icon: CheckCircle },
-            { text: "Dedicated counselor support", icon: CheckCircle },
+            "Personalized guidance at every step",
+            "Transparent process & realistic timelines",
+            "Dedicated counselor support",
           ].map((point, index) => (
-            <div key={index} className="flex items-center gap-3 justify-center md:justify-start">
-              <point.icon className="w-5 h-5 text-success shrink-0" />
-              <span className="text-muted-foreground">{point.text}</span>
+            <div key={index} className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-success shrink-0" />
+              <span className="text-muted-foreground">{point}</span>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
