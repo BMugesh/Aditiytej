@@ -7,15 +7,26 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'display-xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-lg': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+        'title-lg': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'title': ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em' }],
+        'subtitle': ['1.25rem', { lineHeight: '1.4' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
+        'body': ['1rem', { lineHeight: '1.6' }],
+        'caption': ['0.875rem', { lineHeight: '1.5' }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -77,12 +88,25 @@ export default {
         xl: "calc(var(--radius) + 4px)",
         "2xl": "calc(var(--radius) + 8px)",
         "3xl": "calc(var(--radius) + 16px)",
+        "4xl": "2rem",
       },
       boxShadow: {
+        'xs': 'var(--shadow-xs)',
         'soft': 'var(--shadow-md)',
         'elevated': 'var(--shadow-lg)',
         'prominent': 'var(--shadow-xl)',
+        'dramatic': 'var(--shadow-2xl)',
         'accent': 'var(--shadow-accent)',
+        'card': 'var(--shadow-card)',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '30': '7.5rem',
+      },
+      transitionDuration: {
+        '400': '400ms',
+        '600': '600ms',
       },
       keyframes: {
         "accordion-down": {
@@ -94,12 +118,20 @@ export default {
           to: { height: "0" },
         },
         "slide-up": {
-          from: { opacity: "0", transform: "translateY(10px)" },
+          from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-down": {
-          from: { opacity: "0", transform: "translateY(-10px)" },
+          from: { opacity: "0", transform: "translateY(-20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-left": {
+          from: { opacity: "0", transform: "translateX(20px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        "slide-right": {
+          from: { opacity: "0", transform: "translateX(-20px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         "scale-in": {
           from: { opacity: "0", transform: "scale(0.95)" },
@@ -107,16 +139,33 @@ export default {
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-up": "slide-up 0.4s ease-out",
-        "slide-down": "slide-down 0.4s ease-out",
-        "scale-in": "scale-in 0.3s ease-out",
-        "float": "float 3s ease-in-out infinite",
+        "slide-up": "slide-up 0.5s ease-out",
+        "slide-down": "slide-down 0.5s ease-out",
+        "slide-left": "slide-left 0.5s ease-out",
+        "slide-right": "slide-right 0.5s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        "float": "float 4s ease-in-out infinite",
+        "float-slow": "float-slow 6s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
       },
     },
   },

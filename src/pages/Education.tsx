@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { 
   GraduationCap, 
   Briefcase, 
@@ -12,7 +13,9 @@ import {
   CheckCircle,
   BookOpen,
   Calendar,
-  Users
+  Users,
+  MapPin,
+  TrendingUp
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +38,8 @@ const countriesData = [
     popularFields: ["Computer Science", "Business/MBA", "Engineering", "Data Science", "Healthcare"],
     topUniversities: ["MIT", "Stanford", "Harvard", "Caltech", "UC Berkeley"],
     requirements: ["SAT/GRE/GMAT", "TOEFL/IELTS", "SOP", "LORs", "Transcripts"],
-    color: "from-blue-600 to-red-600",
+    image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=1200&q=80",
+    mapPosition: "North America",
   },
   {
     id: "uk",
@@ -55,7 +59,8 @@ const countriesData = [
     popularFields: ["Business", "Law", "Medicine", "Arts", "Engineering"],
     topUniversities: ["Oxford", "Cambridge", "Imperial College", "LSE", "UCL"],
     requirements: ["IELTS/PTE", "SOP", "LORs", "Transcripts", "Portfolio (arts)"],
-    color: "from-blue-700 to-red-700",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80",
+    mapPosition: "Europe",
   },
   {
     id: "canada",
@@ -75,7 +80,8 @@ const countriesData = [
     popularFields: ["Technology", "Healthcare", "Engineering", "Business", "Environmental Science"],
     topUniversities: ["University of Toronto", "UBC", "McGill", "Waterloo", "Alberta"],
     requirements: ["IELTS/TOEFL", "SOP", "LORs", "Transcripts", "GRE (some programs)"],
-    color: "from-red-600 to-red-700",
+    image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&q=80",
+    mapPosition: "North America",
   },
   {
     id: "germany",
@@ -95,7 +101,8 @@ const countriesData = [
     popularFields: ["Engineering", "Automotive", "Research", "Technology", "Renewable Energy"],
     topUniversities: ["TU Munich", "LMU Munich", "Heidelberg", "RWTH Aachen", "TU Berlin"],
     requirements: ["German proficiency (some programs)", "APS certificate (India)", "Blocked account", "TestAS/TestDaF"],
-    color: "from-yellow-500 to-red-600",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80",
+    mapPosition: "Europe",
   },
   {
     id: "australia",
@@ -115,7 +122,8 @@ const countriesData = [
     popularFields: ["Business", "IT", "Healthcare", "Engineering", "Hospitality"],
     topUniversities: ["Melbourne", "Sydney", "ANU", "UNSW", "Monash"],
     requirements: ["IELTS/PTE", "SOP", "LORs", "Transcripts", "Health insurance"],
-    color: "from-blue-600 to-yellow-500",
+    image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1200&q=80",
+    mapPosition: "Oceania",
   },
   {
     id: "newzealand",
@@ -135,7 +143,8 @@ const countriesData = [
     popularFields: ["Agriculture", "Tourism", "IT", "Environmental Science", "Film & Media"],
     topUniversities: ["Auckland", "Otago", "Victoria Wellington", "Canterbury", "Massey"],
     requirements: ["IELTS", "SOP", "LORs", "Transcripts", "Health & character checks"],
-    color: "from-black to-blue-600",
+    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=80",
+    mapPosition: "Oceania",
   },
   {
     id: "austria",
@@ -155,7 +164,8 @@ const countriesData = [
     popularFields: ["Music", "Arts", "Business", "Tourism", "Environmental Studies"],
     topUniversities: ["Vienna", "TU Vienna", "Innsbruck", "Graz", "Salzburg"],
     requirements: ["German proficiency", "SOP", "Transcripts", "Portfolio (arts)", "Entrance exams"],
-    color: "from-red-600 to-red-700",
+    image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1200&q=80",
+    mapPosition: "Europe",
   },
   {
     id: "poland",
@@ -175,7 +185,8 @@ const countriesData = [
     popularFields: ["Medicine", "Engineering", "IT", "Business", "Pharmacy"],
     topUniversities: ["Warsaw", "Jagiellonian", "Warsaw Tech", "Wroclaw", "AGH"],
     requirements: ["IELTS/TOEFL", "SOP", "Transcripts", "Entrance exam (medicine)", "Health certificate"],
-    color: "from-red-600 to-white",
+    image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=1200&q=80",
+    mapPosition: "Europe",
   },
 ];
 
@@ -187,122 +198,158 @@ const EducationPage = () => {
   const country = countriesData.find(c => c.id === activeCountry) || countriesData[0];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16 hero-gradient relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
-                Study Abroad
-              </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
-                Explore Education Destinations
-              </h1>
-              <p className="text-lg text-primary-foreground/70">
-                Comprehensive guides for each country — education systems, costs, and opportunities.
-              </p>
-            </div>
+      <main>
+        {/* Hero Section with Country Image */}
+        <section className="relative pt-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 h-[500px]">
+            <img 
+              src={country.image} 
+              alt={country.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-background" />
+            <div className="absolute inset-0 grid-pattern opacity-20" />
+          </div>
 
+          <div className="container mx-auto px-4 relative z-10 py-16">
             {/* Country Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-wrap justify-center gap-2 mb-12"
+            >
               {countriesData.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setActiveCountry(c.id)}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
                     activeCountry === c.id
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-primary-foreground/10 text-primary-foreground/80 hover:bg-primary-foreground/20"
+                      ? "bg-accent text-white shadow-accent"
+                      : "bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/10"
                   )}
                 >
                   <span className="text-lg">{c.flag}</span>
                   <span className="hidden sm:inline">{c.name}</span>
                 </button>
               ))}
-            </div>
+            </motion.div>
+
+            {/* Country Header */}
+            <motion.div 
+              key={country.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
+                <MapPin className="w-4 h-4 text-accent" />
+                <span className="text-sm text-white/80">{country.mapPosition}</span>
+              </div>
+              
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="text-7xl">{country.flag}</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Study in {country.name}
+              </h1>
+              <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                {country.overview}
+              </p>
+            </motion.div>
           </div>
         </section>
 
-        {/* Country Details */}
-        <section className="py-12 bg-background">
+        {/* Info Grid */}
+        <section className="py-16 -mt-8 relative z-10">
           <div className="container mx-auto px-4">
-            {/* Country Header */}
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-6xl">{country.flag}</span>
-              <div>
-                <h2 className="text-3xl font-bold text-foreground">{country.name}</h2>
-                <p className="text-muted-foreground">{country.overview}</p>
-              </div>
-            </div>
-
-            {/* Info Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <motion.div 
+              key={`grid-${country.id}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
               {/* Education System */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <GraduationCap className="w-5 h-5 text-accent" />
-                  <h3 className="font-semibold text-foreground">Education System</h3>
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-foreground">Education System</h3>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {country.educationSystem.map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-success" />
-                      {item}
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <CheckCircle className="w-4 h-4 text-success mt-0.5 shrink-0" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Admission Cycles */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <Calendar className="w-5 h-5 text-teal" />
-                  <h3 className="font-semibold text-foreground">Admission Cycles</h3>
-                </div>
-                <p className="text-muted-foreground">{country.admissionCycles}</p>
-                <div className="mt-4 pt-4 border-t border-border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Briefcase className="w-5 h-5 text-accent" />
-                    <h4 className="font-medium text-foreground">Work Rights</h4>
+              {/* Admission & Work Rights */}
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-teal" />
                   </div>
-                  <p className="text-sm text-muted-foreground">{country.workRights}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{country.postStudyWork}</p>
+                  <h3 className="font-semibold text-lg text-foreground">Admission & Work</h3>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 mb-1">Admission Cycles</p>
+                    <p className="text-sm text-foreground font-medium">{country.admissionCycles}</p>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Briefcase className="w-4 h-4 text-accent" />
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground/60">Work Rights</p>
+                    </div>
+                    <p className="text-sm text-foreground font-medium">{country.workRights}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{country.postStudyWork}</p>
+                  </div>
                 </div>
               </div>
 
               {/* Cost Overview */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <DollarSign className="w-5 h-5 text-success" />
-                  <h3 className="font-semibold text-foreground">Cost Overview</h3>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Tuition (per year)</p>
-                    <p className="font-semibold text-foreground">{country.avgCost.tuition}</p>
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-success/10 flex items-center justify-center">
+                    <DollarSign className="w-5 h-5 text-success" />
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Living Expenses</p>
-                    <p className="font-semibold text-foreground">{country.avgCost.living}</p>
+                  <h3 className="font-semibold text-lg text-foreground">Cost Overview</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 rounded-xl bg-secondary/50">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 mb-1">Tuition (per year)</p>
+                    <p className="text-lg font-bold text-foreground">{country.avgCost.tuition}</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-secondary/50">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 mb-1">Living Expenses</p>
+                    <p className="text-lg font-bold text-foreground">{country.avgCost.living}</p>
                   </div>
                 </div>
               </div>
 
               {/* Popular Fields */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold text-foreground">Popular Fields</h3>
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-foreground">Popular Fields</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {country.popularFields.map((field, i) => (
-                    <span key={i} className="px-3 py-1 rounded-full bg-secondary text-sm text-secondary-foreground">
+                    <span key={i} className="px-3 py-1.5 rounded-lg bg-secondary text-sm font-medium text-secondary-foreground">
                       {field}
                     </span>
                   ))}
@@ -310,47 +357,62 @@ const EducationPage = () => {
               </div>
 
               {/* Top Universities */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <Users className="w-5 h-5 text-accent" />
-                  <h3 className="font-semibold text-foreground">Top Universities</h3>
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-foreground">Top Universities</h3>
                 </div>
                 <ul className="space-y-2">
                   {country.topUniversities.map((uni, i) => (
-                    <li key={i} className="text-sm text-muted-foreground">{uni}</li>
+                    <li key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-secondary/50 transition-colors">
+                      <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm text-foreground">{uni}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
 
               {/* Requirements */}
-              <div className="bg-card rounded-2xl p-6 border border-border">
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock className="w-5 h-5 text-teal" />
-                  <h3 className="font-semibold text-foreground">Key Requirements</h3>
+              <div className="premium-card p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-teal" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-foreground">Key Requirements</h3>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {country.requirements.map((req, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-success" />
-                      {req}
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <CheckCircle className="w-4 h-4 text-success mt-0.5 shrink-0" />
+                      <span>{req}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
             {/* CTA */}
-            <div className="text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center mt-12"
+            >
               <p className="text-muted-foreground mb-4">
                 Want to explore universities in {country.name}?
               </p>
               <Link to={`/universities?country=${country.id}`}>
-                <Button variant="accent" size="lg">
+                <Button size="lg" className="font-semibold">
                   View Universities
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>

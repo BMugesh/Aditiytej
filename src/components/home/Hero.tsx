@@ -1,102 +1,194 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, GraduationCap, Globe, Briefcase, CheckCircle } from "lucide-react";
+import { ArrowRight, Play, CheckCircle, Globe, Users, Award, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
+import { AnimatedContainer, StaggerWrapper, StaggerItem, fadeInUp, staggerContainer } from "@/components/ui/motion";
 
 const Hero = () => {
   const stats = [
-    { value: "10K+", label: "Students Placed" },
-    { value: "500+", label: "Partner Universities" },
-    { value: "8", label: "Countries" },
-    { value: "95%", label: "Visa Success" },
+    { value: "10K+", label: "Students Placed", icon: Users },
+    { value: "500+", label: "Partner Universities", icon: Award },
+    { value: "8", label: "Countries", icon: Globe },
+    { value: "95%", label: "Visa Success", icon: TrendingUp },
+  ];
+
+  const countries = [
+    { name: "United States", flag: "🇺🇸" },
+    { name: "United Kingdom", flag: "🇬🇧" },
+    { name: "Canada", flag: "🇨🇦" },
+    { name: "Germany", flag: "🇩🇪" },
+    { name: "Australia", flag: "🇦🇺" },
+    { name: "New Zealand", flag: "🇳🇿" },
+    { name: "Austria", flag: "🇦🇹" },
+    { name: "Poland", flag: "🇵🇱" },
   ];
 
   return (
     <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden">
-      {/* Background Elements */}
+      {/* Refined Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-foreground/5 rounded-full blur-3xl" />
+        {/* Gradient Orbs */}
+        <div className="absolute top-20 -left-20 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-primary-foreground/3 rounded-full blur-[80px]" />
+        
+        {/* Subtle Grid */}
+        <div className="absolute inset-0 grid-pattern opacity-30" />
       </div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      <div className="container mx-auto px-4 pt-28 pb-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-180px)]">
+          
+          {/* Left Content */}
+          <div className="order-2 lg:order-1">
+            {/* Trust Badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+            >
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-sm text-white/80 font-medium">Trusted by 10,000+ Students Globally</span>
+            </motion.div>
 
-      <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 mb-8 animate-fade-in">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-sm text-primary-foreground/90">Trusted by 10,000+ Students Worldwide</span>
+            {/* Headline */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1] tracking-tight"
+            >
+              From University Selection to{" "}
+              <span className="text-gradient">Global Career</span>
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg md:text-xl text-white/60 mb-10 max-w-lg leading-relaxed"
+            >
+              Your complete overseas education & career enablement partner. Expert guidance from admission to placement across 8 countries.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-start gap-4 mb-12"
+            >
+              <Link to="/enquiry">
+                <Button 
+                  size="lg" 
+                  className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 h-14 text-base group shadow-accent"
+                >
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/universities">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-white/20 text-white hover:bg-white/10 font-semibold px-8 h-14 text-base"
+                >
+                  Explore Universities
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Countries Row */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-2"
+            >
+              {countries.map((country, i) => (
+                <Link 
+                  key={country.name} 
+                  to={`/education?country=${country.name.toLowerCase().replace(' ', '')}`}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-sm"
+                >
+                  <span className="text-lg">{country.flag}</span>
+                  <span className="text-white/70 hidden sm:inline">{country.name}</span>
+                </Link>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in-up">
-            From University Selection to{" "}
-            <span className="text-gradient">Global Career</span>
-            <br />— We Handle Everything
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-primary-foreground/70 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-1">
-            Your complete overseas education & career enablement partner. Expert guidance from admission to placement across 8 countries.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-delay-2">
-            <Link to="/enquiry">
-              <Button variant="hero" size="xl" className="group">
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button variant="heroOutline" size="xl">
-                Explore Services
-              </Button>
-            </Link>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto animate-fade-in-delay-3">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-primary-foreground/60">
-                  {stat.label}
-                </div>
+          {/* Right Content - Stats & Visual */}
+          <div className="order-1 lg:order-2">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="relative"
+            >
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    className="glass-dark rounded-2xl p-6 group hover:bg-white/[0.08] transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+                        <stat.icon className="w-5 h-5 text-accent" />
+                      </div>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-white/50">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Journey Steps Preview */}
-        <div className="mt-20 max-w-5xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-2 md:gap-0">
-            {["Explore", "Apply", "Visa", "Study", "Work", "Settle"].map((step, index) => (
-              <div key={step} className="journey-step flex items-center">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20">
-                  <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-xs font-bold text-accent">
-                    {index + 1}
-                  </div>
-                  <span className="text-sm font-medium text-primary-foreground/80">{step}</span>
+              {/* Journey Preview */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mt-6 glass-dark rounded-2xl p-6"
+              >
+                <p className="text-sm text-white/40 mb-4 font-medium uppercase tracking-wider">Your Journey</p>
+                <div className="flex items-center justify-between">
+                  {["Explore", "Apply", "Visa", "Study", "Work", "Settle"].map((step, index) => (
+                    <div key={step} className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
+                          index === 0 ? 'bg-accent text-white' : 'bg-white/10 text-white/60'
+                        }`}>
+                          {index + 1}
+                        </div>
+                        <span className="text-[10px] text-white/40 mt-1 hidden md:block">{step}</span>
+                      </div>
+                      {index < 5 && (
+                        <div className="w-4 md:w-8 h-px bg-white/10 mx-1" />
+                      )}
+                    </div>
+                  ))}
                 </div>
-                {index < 5 && (
-                  <ArrowRight className="w-4 h-4 text-primary-foreground/40 mx-2 hidden md:block" />
-                )}
-              </div>
-            ))}
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       {/* Bottom Wave */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+            d="M0 80L60 72C120 64 240 48 360 42.7C480 37 600 43 720 48C840 53 960 59 1080 58.7C1200 59 1320 53 1380 50L1440 48V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z"
             fill="hsl(var(--background))"
           />
         </svg>
