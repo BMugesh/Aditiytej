@@ -1,10 +1,12 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, CheckCircle, Globe, Users, Award, TrendingUp } from "lucide-react";
-import { motion } from "framer-motion";
-import { AnimatedContainer, StaggerWrapper, StaggerItem, fadeInUp, staggerContainer } from "@/components/ui/motion";
+import { ArrowRight, Users, Award, Globe, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const stats = [
     { value: "10K+", label: "Students Placed", icon: Users },
     { value: "500+", label: "Partner Universities", icon: Award },
@@ -13,31 +15,134 @@ const Hero = () => {
   ];
 
   const countries = [
-    { name: "United States", flag: "🇺🇸" },
-    { name: "United Kingdom", flag: "🇬🇧" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "New Zealand", flag: "🇳🇿" },
-    { name: "Austria", flag: "🇦🇹" },
-    { name: "Poland", flag: "🇵🇱" },
+    { name: "United States", flag: "🇺🇸", id: "us" },
+    { name: "United Kingdom", flag: "🇬🇧", id: "uk" },
+    { name: "Canada", flag: "🇨🇦", id: "canada" },
+    { name: "Germany", flag: "🇩🇪", id: "germany" },
+    { name: "Australia", flag: "🇦🇺", id: "australia" },
+    { name: "New Zealand", flag: "🇳🇿", id: "newzealand" },
+    { name: "Austria", flag: "🇦🇹", id: "austria" },
+    { name: "Poland", flag: "🇵🇱", id: "poland" },
   ];
 
+  // Real campus imagery from top universities
+  const heroImages = [
+    {
+      url: "https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80",
+      alt: "Harvard University Campus",
+      university: "Harvard University",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=1920&q=80",
+      alt: "Oxford University",
+      university: "Oxford University",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1920&q=80",
+      alt: "MIT Campus",
+      university: "MIT",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&q=80",
+      alt: "University Campus",
+      university: "Stanford University",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1920&q=80",
+      alt: "Cambridge University",
+      university: "Cambridge University",
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden">
-      {/* Refined Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <div className="absolute top-20 -left-20 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[120px] animate-float-slow" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-primary-foreground/3 rounded-full blur-[80px]" />
-        
-        {/* Subtle Grid */}
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Full-width Background Image with Ken Burns effect */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentImageIndex}
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: `url(${heroImages[currentImageIndex].url})`,
+              transform: 'scale(1.05)',
+            }}
+          />
+          {/* Premium Gradient Overlay - NOT reducing opacity */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/40" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Animated Grid Pattern */}
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+
+      {/* Floating Orbs */}
+      <div className="absolute top-20 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px] animate-float" />
+      <div className="absolute bottom-20 right-0 w-[400px] h-[400px] bg-teal/10 rounded-full blur-[120px] animate-float" style={{ animationDelay: '-2s' }} />
+
+      {/* Image Navigation */}
+      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3">
+        <button 
+          onClick={prevImage}
+          className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <div className="flex gap-2">
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentImageIndex(idx)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                idx === currentImageIndex ? 'bg-accent w-6' : 'bg-white/40 hover:bg-white/60'
+              }`}
+            />
+          ))}
+        </div>
+        <button 
+          onClick={nextImage}
+          className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
 
+      {/* Current University Label */}
+      <motion.div 
+        key={`label-${currentImageIndex}`}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="absolute bottom-8 left-8 z-20"
+      >
+        <span className="text-sm text-white/60 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          {heroImages[currentImageIndex].university}
+        </span>
+      </motion.div>
+
       <div className="container mx-auto px-4 pt-28 pb-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-180px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[calc(100vh-180px)]">
           
           {/* Left Content */}
           <div className="order-2 lg:order-1">
@@ -57,7 +162,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
             >
               From University Selection to{" "}
               <span className="text-gradient">Global Career</span>
@@ -68,7 +173,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/60 mb-10 max-w-lg leading-relaxed"
+              className="text-lg md:text-xl text-white/70 mb-10 max-w-xl leading-relaxed"
             >
               Your complete overseas education & career enablement partner. Expert guidance from admission to placement across 8 countries.
             </motion.p>
@@ -93,7 +198,7 @@ const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-white/20 text-white hover:bg-white/10 font-semibold px-8 h-14 text-base"
+                  className="border-white/20 text-white hover:bg-white/10 font-semibold px-8 h-14 text-base backdrop-blur-sm"
                 >
                   Explore Universities
                 </Button>
@@ -110,11 +215,11 @@ const Hero = () => {
               {countries.map((country, i) => (
                 <Link 
                   key={country.name} 
-                  to={`/education?country=${country.name.toLowerCase().replace(' ', '')}`}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-sm"
+                  to={`/education?country=${country.id}`}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-sm group"
                 >
-                  <span className="text-lg">{country.flag}</span>
-                  <span className="text-white/70 hidden sm:inline">{country.name}</span>
+                  <span className="text-lg group-hover:scale-110 transition-transform">{country.flag}</span>
+                  <span className="text-white/70 hidden sm:inline group-hover:text-white transition-colors">{country.name}</span>
                 </Link>
               ))}
             </motion.div>
@@ -136,18 +241,25 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="glass-dark rounded-2xl p-6 group hover:bg-white/[0.08] transition-all duration-300"
+                    className="glass-dark rounded-2xl p-6 group hover:bg-white/[0.08] transition-all duration-300 relative overflow-hidden"
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                        <stat.icon className="w-5 h-5 text-accent" />
+                    {/* Shimmer effect on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute inset-0 animate-shimmer" />
+                    </div>
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <stat.icon className="w-5 h-5 text-accent" />
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-1">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-white/50">
-                      {stat.label}
+                      <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-white/50">
+                        {stat.label}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -164,13 +276,13 @@ const Hero = () => {
                 <div className="flex items-center justify-between">
                   {["Explore", "Apply", "Visa", "Study", "Work", "Settle"].map((step, index) => (
                     <div key={step} className="flex items-center">
-                      <div className="flex flex-col items-center">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                          index === 0 ? 'bg-accent text-white' : 'bg-white/10 text-white/60'
+                      <div className="flex flex-col items-center group cursor-pointer">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all group-hover:scale-110 ${
+                          index === 0 ? 'bg-accent text-white' : 'bg-white/10 text-white/60 group-hover:bg-white/20'
                         }`}>
                           {index + 1}
                         </div>
-                        <span className="text-[10px] text-white/40 mt-1 hidden md:block">{step}</span>
+                        <span className="text-[10px] text-white/40 mt-1 hidden md:block group-hover:text-white/60 transition-colors">{step}</span>
                       </div>
                       {index < 5 && (
                         <div className="w-4 md:w-8 h-px bg-white/10 mx-1" />
