@@ -4,10 +4,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  GraduationCap, 
-  Briefcase, 
-  Clock, 
+import {
+  GraduationCap,
+  Briefcase,
+  Clock,
   DollarSign,
   ArrowRight,
   CheckCircle,
@@ -200,13 +200,13 @@ const EducationPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section with Country Image */}
         <section className="relative pt-20 overflow-hidden min-h-[550px]">
           {/* Background Image with Animation */}
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={country.id}
               initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -214,8 +214,8 @@ const EducationPage = () => {
               transition={{ duration: 1 }}
               className="absolute inset-0 h-[550px]"
             >
-              <img 
-                src={country.image} 
+              <img
+                src={country.image}
                 alt={country.name}
                 className="w-full h-full object-cover"
               />
@@ -227,7 +227,7 @@ const EducationPage = () => {
 
           <div className="container mx-auto px-4 relative z-10 py-16">
             {/* Country Tabs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -252,7 +252,7 @@ const EducationPage = () => {
 
             {/* Country Header */}
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={country.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -262,17 +262,17 @@ const EducationPage = () => {
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
                   <MapPin className="w-4 h-4 text-accent" />
-                  <span className="text-sm text-white/80">{country.mapPosition}</span>
+                  <span className="text-sm font-medium text-muted-foreground bg-white/50 px-3 py-1 rounded-full border border-border/50">{country.mapPosition}</span>
                 </div>
-                
+
                 <div className="flex items-center justify-center gap-4 mb-6">
                   <span className="text-7xl drop-shadow-lg">{country.flag}</span>
                 </div>
-                
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gradient mb-4">
                   Study in {country.name}
                 </h1>
-                <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
                   {country.overview}
                 </p>
               </motion.div>
@@ -283,7 +283,7 @@ const EducationPage = () => {
         {/* Info Grid */}
         <section className="py-16 -mt-8 relative z-10">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               key={`grid-${country.id}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -296,7 +296,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
                     <GraduationCap className="w-5 h-5 text-accent" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Education System</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Education System</h3>
                 </div>
                 <ul className="space-y-3">
                   {country.educationSystem.map((item, i) => (
@@ -314,7 +314,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center">
                     <Calendar className="w-5 h-5 text-teal" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Admission & Work</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Admission & Work</h3>
                 </div>
                 <div className="space-y-4">
                   <div>
@@ -338,7 +338,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-success/10 flex items-center justify-center">
                     <DollarSign className="w-5 h-5 text-success" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Cost Overview</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Cost Overview</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="p-4 rounded-xl bg-secondary/50">
@@ -358,7 +358,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Popular Fields</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Popular Fields</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {country.popularFields.map((field, i) => (
@@ -375,7 +375,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
                     <Users className="w-5 h-5 text-accent" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Top Universities</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Top Universities</h3>
                 </div>
                 <ul className="space-y-2">
                   {country.topUniversities.map((uni, i) => (
@@ -395,7 +395,7 @@ const EducationPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-teal/10 flex items-center justify-center">
                     <BookOpen className="w-5 h-5 text-teal" />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">Key Requirements</h3>
+                  <h3 className="font-serif font-bold text-xl text-primary">Key Requirements</h3>
                 </div>
                 <ul className="space-y-3">
                   {country.requirements.map((req, i) => (
@@ -409,7 +409,7 @@ const EducationPage = () => {
             </motion.div>
 
             {/* CTAs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -430,7 +430,7 @@ const EducationPage = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

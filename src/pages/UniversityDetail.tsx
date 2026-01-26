@@ -3,10 +3,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { 
-  MapPin, 
-  Calendar, 
-  Users, 
+import {
+  MapPin,
+  Calendar,
+  Users,
   Trophy,
   CheckCircle,
   GraduationCap,
@@ -48,14 +48,14 @@ const UniversityDetailPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-20 overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 h-[600px]">
-            <img 
-              src={university.image} 
+            <img
+              src={university.image}
               alt={university.name}
               className="w-full h-full object-cover"
             />
@@ -64,17 +64,17 @@ const UniversityDetailPage = () => {
           </div>
 
           <div className="container mx-auto px-4 relative z-10 py-20">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="max-w-4xl"
             >
               {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-sm text-white/60 mb-6">
-                <Link to="/universities" className="hover:text-white transition-colors">Universities</Link>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                <Link to="/universities" className="hover:text-primary transition-colors">Universities</Link>
                 <span>/</span>
-                <span className="text-white/80">{university.name}</span>
+                <span className="text-foreground font-medium">{university.name}</span>
               </div>
 
               {/* Logo & Title */}
@@ -90,23 +90,23 @@ const UniversityDetailPage = () => {
                     </span>
                     <span className="text-2xl">{university.country === "us" ? "🇺🇸" : university.country === "uk" ? "🇬🇧" : university.country === "canada" ? "🇨🇦" : university.country === "germany" ? "🇩🇪" : university.country === "australia" ? "🇦🇺" : university.country === "newzealand" ? "🇳🇿" : university.country === "austria" ? "🇦🇹" : "🇵🇱"}</span>
                   </div>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-2">
                     {university.name}
                   </h1>
-                  <div className="flex items-center gap-4 text-white/70">
+                  <div className="flex items-center gap-4 text-muted-foreground font-medium">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-4 h-4 text-primary" />
                       {university.location}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Building className="w-4 h-4" />
+                      <Building className="w-4 h-4 text-primary" />
                       {university.type}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-lg text-white/80 max-w-3xl mb-8">
+              <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-relaxed">
                 {university.description}
               </p>
 
@@ -140,13 +140,13 @@ const UniversityDetailPage = () => {
               {/* Left Column - Main Content */}
               <div className="lg:col-span-2 space-y-8">
                 {/* Why This University */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="premium-card p-8"
                 >
-                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-serif font-bold text-foreground mb-6 flex items-center gap-3">
                     <Award className="w-6 h-6 text-accent" />
                     Why {university.name}?
                   </h2>
@@ -183,7 +183,7 @@ const UniversityDetailPage = () => {
                 </motion.div>
 
                 {/* Popular Programs */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -229,7 +229,7 @@ const UniversityDetailPage = () => {
                 </motion.div>
 
                 {/* Admission Requirements */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -278,7 +278,7 @@ const UniversityDetailPage = () => {
                 </motion.div>
 
                 {/* Career Outcomes */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -317,7 +317,7 @@ const UniversityDetailPage = () => {
               <div className="lg:col-span-1">
                 <div className="sticky top-24 space-y-6">
                   {/* Eligibility CTA */}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -336,7 +336,7 @@ const UniversityDetailPage = () => {
                   </motion.div>
 
                   {/* Apply CTA */}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -384,8 +384,8 @@ const UniversityDetailPage = () => {
                   <Link key={uni.id} to={`/universities/${uni.id}`} className="block">
                     <div className="university-card group">
                       <div className="relative h-40 overflow-hidden">
-                        <img 
-                          src={uni.image} 
+                        <img
+                          src={uni.image}
                           alt={uni.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
@@ -412,7 +412,7 @@ const UniversityDetailPage = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

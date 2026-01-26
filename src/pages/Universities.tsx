@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
+import {
   Search,
   MapPin,
   GraduationCap,
@@ -27,7 +27,7 @@ const UniversitiesPage = () => {
 
   // For "All Countries" - rotate through country backgrounds
   const countryKeys = Object.keys(countryImages).filter(k => k !== 'all');
-  
+
   useEffect(() => {
     if (activeCountry === "all") {
       const interval = setInterval(() => {
@@ -37,15 +37,15 @@ const UniversitiesPage = () => {
     }
   }, [activeCountry]);
 
-  const currentBackground = activeCountry === "all" 
+  const currentBackground = activeCountry === "all"
     ? countryImages[countryKeys[currentBgIndex]]
     : countryImages[activeCountry] || countryImages.all;
 
   const filteredUniversities = universitiesData.filter(uni => {
     const matchesCountry = activeCountry === "all" || uni.country === activeCountry;
     const matchesSearch = uni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         uni.courses.some(c => c.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                         uni.location.toLowerCase().includes(searchQuery.toLowerCase());
+      uni.courses.some(c => c.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      uni.location.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCountry && matchesSearch;
   });
 
@@ -57,7 +57,7 @@ const UniversitiesPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section with Dynamic Background */}
         <section className="pt-20 relative overflow-hidden min-h-[500px]">
@@ -71,7 +71,7 @@ const UniversitiesPage = () => {
               transition={{ duration: 1.2 }}
               className="absolute inset-0"
             >
-              <div 
+              <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${currentBackground})` }}
               />
@@ -79,11 +79,11 @@ const UniversitiesPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/30" />
             </motion.div>
           </AnimatePresence>
-          
+
           <div className="absolute inset-0 grid-pattern opacity-20" />
-          
+
           <div className="container mx-auto px-4 relative z-10 py-16">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -93,16 +93,16 @@ const UniversitiesPage = () => {
                 <GraduationCap className="w-4 h-4" />
                 University Explorer
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gradient mb-4">
                 Find Your Dream University
               </h1>
-              <p className="text-lg text-white/70">
+              <p className="text-lg text-muted-foreground font-medium">
                 Explore {universitiesData.length}+ top universities across 8 countries
               </p>
             </motion.div>
 
             {/* Search Bar */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -121,7 +121,7 @@ const UniversitiesPage = () => {
             </motion.div>
 
             {/* Country Filters */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -144,7 +144,7 @@ const UniversitiesPage = () => {
               ))}
             </motion.div>
           </div>
-          
+
           {/* Bottom Wave */}
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
@@ -183,25 +183,25 @@ const UniversitiesPage = () => {
                     <div className="university-card group h-full flex flex-col">
                       {/* Campus Image */}
                       <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={uni.image} 
+                        <img
+                          src={uni.image}
                           alt={uni.name}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                        
+
                         {/* Ranking Badge */}
                         <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-accent/90 backdrop-blur-sm text-white text-xs font-bold">
                           <Star className="w-3 h-3 fill-white" />
                           #{uni.ranking}
                         </div>
-                        
+
                         {/* Logo Placeholder */}
                         <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center text-primary font-bold text-xs">
                           {uni.logo}
                         </div>
                       </div>
-                      
+
                       {/* Content */}
                       <div className="p-5 flex-grow flex flex-col">
                         <div className="flex items-start gap-2 mb-3">
@@ -216,9 +216,9 @@ const UniversitiesPage = () => {
                             </p>
                           </div>
                         </div>
-                        
+
                         <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-3">{uni.type}</p>
-                        
+
                         <div className="flex flex-wrap gap-1.5 mb-4">
                           {uni.courses.slice(0, 3).map((course, i) => (
                             <span key={i} className="px-2 py-1 rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
@@ -231,7 +231,7 @@ const UniversitiesPage = () => {
                             </span>
                           )}
                         </div>
-                        
+
                         <div className="mt-auto pt-4 border-t border-border">
                           <Button variant="outline" size="sm" className="w-full group/btn">
                             Check Eligibility
@@ -251,7 +251,7 @@ const UniversitiesPage = () => {
         <section className="py-16 bg-secondary/30">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -263,7 +263,7 @@ const UniversitiesPage = () => {
                 <p className="text-3xl font-bold text-foreground mb-1">{universitiesData.length}+</p>
                 <p className="text-sm text-muted-foreground">Partner Universities</p>
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -276,7 +276,7 @@ const UniversitiesPage = () => {
                 <p className="text-3xl font-bold text-foreground mb-1">10,000+</p>
                 <p className="text-sm text-muted-foreground">Students Placed</p>
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -289,7 +289,7 @@ const UniversitiesPage = () => {
                 <p className="text-3xl font-bold text-foreground mb-1">8</p>
                 <p className="text-sm text-muted-foreground">Countries</p>
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -306,7 +306,7 @@ const UniversitiesPage = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
