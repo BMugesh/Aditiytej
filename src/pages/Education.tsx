@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   GraduationCap, 
   Briefcase, 
@@ -38,7 +38,7 @@ const countriesData = [
     popularFields: ["Computer Science", "Business/MBA", "Engineering", "Data Science", "Healthcare"],
     topUniversities: ["MIT", "Stanford", "Harvard", "Caltech", "UC Berkeley"],
     requirements: ["SAT/GRE/GMAT", "TOEFL/IELTS", "SOP", "LORs", "Transcripts"],
-    image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80",
     mapPosition: "North America",
   },
   {
@@ -59,7 +59,7 @@ const countriesData = [
     popularFields: ["Business", "Law", "Medicine", "Arts", "Engineering"],
     topUniversities: ["Oxford", "Cambridge", "Imperial College", "LSE", "UCL"],
     requirements: ["IELTS/PTE", "SOP", "LORs", "Transcripts", "Portfolio (arts)"],
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=1920&q=80",
     mapPosition: "Europe",
   },
   {
@@ -80,7 +80,7 @@ const countriesData = [
     popularFields: ["Technology", "Healthcare", "Engineering", "Business", "Environmental Science"],
     topUniversities: ["University of Toronto", "UBC", "McGill", "Waterloo", "Alberta"],
     requirements: ["IELTS/TOEFL", "SOP", "LORs", "Transcripts", "GRE (some programs)"],
-    image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1920&q=80",
     mapPosition: "North America",
   },
   {
@@ -101,7 +101,7 @@ const countriesData = [
     popularFields: ["Engineering", "Automotive", "Research", "Technology", "Renewable Energy"],
     topUniversities: ["TU Munich", "LMU Munich", "Heidelberg", "RWTH Aachen", "TU Berlin"],
     requirements: ["German proficiency (some programs)", "APS certificate (India)", "Blocked account", "TestAS/TestDaF"],
-    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1920&q=80",
     mapPosition: "Europe",
   },
   {
@@ -122,7 +122,7 @@ const countriesData = [
     popularFields: ["Business", "IT", "Healthcare", "Engineering", "Hospitality"],
     topUniversities: ["Melbourne", "Sydney", "ANU", "UNSW", "Monash"],
     requirements: ["IELTS/PTE", "SOP", "LORs", "Transcripts", "Health insurance"],
-    image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1920&q=80",
     mapPosition: "Oceania",
   },
   {
@@ -143,7 +143,7 @@ const countriesData = [
     popularFields: ["Agriculture", "Tourism", "IT", "Environmental Science", "Film & Media"],
     topUniversities: ["Auckland", "Otago", "Victoria Wellington", "Canterbury", "Massey"],
     requirements: ["IELTS", "SOP", "LORs", "Transcripts", "Health & character checks"],
-    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1920&q=80",
     mapPosition: "Oceania",
   },
   {
@@ -164,7 +164,7 @@ const countriesData = [
     popularFields: ["Music", "Arts", "Business", "Tourism", "Environmental Studies"],
     topUniversities: ["Vienna", "TU Vienna", "Innsbruck", "Graz", "Salzburg"],
     requirements: ["German proficiency", "SOP", "Transcripts", "Portfolio (arts)", "Entrance exams"],
-    image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1920&q=80",
     mapPosition: "Europe",
   },
   {
@@ -185,7 +185,7 @@ const countriesData = [
     popularFields: ["Medicine", "Engineering", "IT", "Business", "Pharmacy"],
     topUniversities: ["Warsaw", "Jagiellonian", "Warsaw Tech", "Wroclaw", "AGH"],
     requirements: ["IELTS/TOEFL", "SOP", "Transcripts", "Entrance exam (medicine)", "Health certificate"],
-    image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=1920&q=80",
     mapPosition: "Europe",
   },
 ];
@@ -203,17 +203,27 @@ const EducationPage = () => {
       
       <main>
         {/* Hero Section with Country Image */}
-        <section className="relative pt-20 overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 h-[500px]">
-            <img 
-              src={country.image} 
-              alt={country.name}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-background" />
-            <div className="absolute inset-0 grid-pattern opacity-20" />
-          </div>
+        <section className="relative pt-20 overflow-hidden min-h-[550px]">
+          {/* Background Image with Animation */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={country.id}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 h-[550px]"
+            >
+              <img 
+                src={country.image} 
+                alt={country.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-primary/30" />
+              <div className="absolute inset-0 grid-pattern opacity-20" />
+            </motion.div>
+          </AnimatePresence>
 
           <div className="container mx-auto px-4 relative z-10 py-16">
             {/* Country Tabs */}
@@ -230,7 +240,7 @@ const EducationPage = () => {
                   className={cn(
                     "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
                     activeCountry === c.id
-                      ? "bg-accent text-white shadow-accent"
+                      ? "bg-accent text-white shadow-accent scale-105"
                       : "bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/10"
                   )}
                 >
@@ -241,29 +251,32 @@ const EducationPage = () => {
             </motion.div>
 
             {/* Country Header */}
-            <motion.div 
-              key={country.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
-                <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-sm text-white/80">{country.mapPosition}</span>
-              </div>
-              
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <span className="text-7xl">{country.flag}</span>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Study in {country.name}
-              </h1>
-              <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                {country.overview}
-              </p>
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={country.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl mx-auto text-center"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
+                  <MapPin className="w-4 h-4 text-accent" />
+                  <span className="text-sm text-white/80">{country.mapPosition}</span>
+                </div>
+                
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <span className="text-7xl drop-shadow-lg">{country.flag}</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                  Study in {country.name}
+                </h1>
+                <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                  {country.overview}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </section>
 
@@ -395,28 +408,29 @@ const EducationPage = () => {
               </div>
             </motion.div>
 
-            {/* CTA */}
+            {/* CTAs */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-center mt-12"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
             >
-              <p className="text-muted-foreground mb-4">
-                Want to explore universities in {country.name}?
-              </p>
               <Link to={`/universities?country=${country.id}`}>
-                <Button size="lg" className="font-semibold">
-                  View Universities
-                  <ArrowRight className="w-4 h-4" />
+                <Button size="lg" className="font-semibold group">
+                  Explore {country.name} Universities
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/enquiry">
+                <Button variant="outline" size="lg" className="font-semibold">
+                  Get Free Counseling
                 </Button>
               </Link>
             </motion.div>
           </div>
         </section>
       </main>
-
+      
       <Footer />
     </div>
   );

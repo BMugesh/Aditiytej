@@ -1,103 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Search,
   MapPin,
   GraduationCap,
-  ArrowRight,
   Star,
-  Building,
   ChevronRight,
+  Users,
+  TrendingUp,
   Filter
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-// Real university data
-const universitiesData = [
-  // United States
-  { id: "mit", name: "Massachusetts Institute of Technology", country: "us", countryName: "United States", location: "Cambridge, MA", ranking: 1, courses: ["Computer Science", "Engineering", "Physics", "AI/ML"], type: "Private Research", logo: "MIT" },
-  { id: "stanford", name: "Stanford University", country: "us", countryName: "United States", location: "Stanford, CA", ranking: 3, courses: ["Computer Science", "Business", "Medicine", "Law"], type: "Private Research", logo: "Stanford" },
-  { id: "harvard", name: "Harvard University", country: "us", countryName: "United States", location: "Cambridge, MA", ranking: 4, courses: ["Law", "Business", "Medicine", "Public Policy"], type: "Private Research", logo: "Harvard" },
-  { id: "caltech", name: "California Institute of Technology", country: "us", countryName: "United States", location: "Pasadena, CA", ranking: 6, courses: ["Physics", "Engineering", "Chemistry", "Computer Science"], type: "Private Research", logo: "Caltech" },
-  { id: "ucberkeley", name: "UC Berkeley", country: "us", countryName: "United States", location: "Berkeley, CA", ranking: 10, courses: ["Engineering", "Business", "Computer Science", "Data Science"], type: "Public Research", logo: "UCB" },
-  { id: "ucla", name: "University of California, Los Angeles", country: "us", countryName: "United States", location: "Los Angeles, CA", ranking: 15, courses: ["Film", "Business", "Engineering", "Medicine"], type: "Public Research", logo: "UCLA" },
-  { id: "columbia", name: "Columbia University", country: "us", countryName: "United States", location: "New York, NY", ranking: 12, courses: ["Journalism", "Law", "Business", "Arts"], type: "Private Research", logo: "Columbia" },
-  { id: "nyu", name: "New York University", country: "us", countryName: "United States", location: "New York, NY", ranking: 25, courses: ["Business", "Arts", "Film", "Media"], type: "Private Research", logo: "NYU" },
-  
-  // United Kingdom
-  { id: "oxford", name: "University of Oxford", country: "uk", countryName: "United Kingdom", location: "Oxford, England", ranking: 1, courses: ["PPE", "Law", "Medicine", "Computer Science"], type: "Public Research", logo: "Oxford" },
-  { id: "cambridge", name: "University of Cambridge", country: "uk", countryName: "United Kingdom", location: "Cambridge, England", ranking: 2, courses: ["Engineering", "Natural Sciences", "Mathematics", "Economics"], type: "Public Research", logo: "Cambridge" },
-  { id: "imperial", name: "Imperial College London", country: "uk", countryName: "United Kingdom", location: "London, England", ranking: 6, courses: ["Engineering", "Medicine", "Business", "Science"], type: "Public Research", logo: "Imperial" },
-  { id: "lse", name: "London School of Economics", country: "uk", countryName: "United Kingdom", location: "London, England", ranking: 8, courses: ["Economics", "Politics", "Law", "Finance"], type: "Public Research", logo: "LSE" },
-  { id: "ucl", name: "University College London", country: "uk", countryName: "United Kingdom", location: "London, England", ranking: 9, courses: ["Architecture", "Medicine", "Law", "Engineering"], type: "Public Research", logo: "UCL" },
-  { id: "edinburgh", name: "University of Edinburgh", country: "uk", countryName: "United Kingdom", location: "Edinburgh, Scotland", ranking: 15, courses: ["Medicine", "AI", "Informatics", "Business"], type: "Public Research", logo: "Edinburgh" },
-  { id: "manchester", name: "University of Manchester", country: "uk", countryName: "United Kingdom", location: "Manchester, England", ranking: 28, courses: ["Engineering", "Business", "Computer Science", "Medicine"], type: "Public Research", logo: "Manchester" },
-  { id: "warwick", name: "University of Warwick", country: "uk", countryName: "United Kingdom", location: "Coventry, England", ranking: 64, courses: ["Business", "Economics", "Engineering", "Computer Science"], type: "Public Research", logo: "Warwick" },
-  
-  // Canada
-  { id: "toronto", name: "University of Toronto", country: "canada", countryName: "Canada", location: "Toronto, Ontario", ranking: 21, courses: ["Computer Science", "Engineering", "Business", "Medicine"], type: "Public Research", logo: "UofT" },
-  { id: "ubc", name: "University of British Columbia", country: "canada", countryName: "Canada", location: "Vancouver, BC", ranking: 34, courses: ["Engineering", "Forestry", "Business", "Computer Science"], type: "Public Research", logo: "UBC" },
-  { id: "mcgill", name: "McGill University", country: "canada", countryName: "Canada", location: "Montreal, Quebec", ranking: 30, courses: ["Medicine", "Law", "Engineering", "Music"], type: "Public Research", logo: "McGill" },
-  { id: "waterloo", name: "University of Waterloo", country: "canada", countryName: "Canada", location: "Waterloo, Ontario", ranking: 112, courses: ["Computer Science", "Engineering", "Mathematics", "Actuarial Science"], type: "Public Research", logo: "Waterloo" },
-  { id: "alberta", name: "University of Alberta", country: "canada", countryName: "Canada", location: "Edmonton, Alberta", ranking: 111, courses: ["Engineering", "AI", "Business", "Health Sciences"], type: "Public Research", logo: "Alberta" },
-  
-  // Germany
-  { id: "tumunich", name: "Technical University of Munich", country: "germany", countryName: "Germany", location: "Munich, Bavaria", ranking: 37, courses: ["Engineering", "Computer Science", "Physics", "Architecture"], type: "Public Research", logo: "TUM" },
-  { id: "lmu", name: "LMU Munich", country: "germany", countryName: "Germany", location: "Munich, Bavaria", ranking: 59, courses: ["Medicine", "Law", "Business", "Psychology"], type: "Public Research", logo: "LMU" },
-  { id: "heidelberg", name: "Heidelberg University", country: "germany", countryName: "Germany", location: "Heidelberg", ranking: 65, courses: ["Medicine", "Natural Sciences", "Law", "Philosophy"], type: "Public Research", logo: "Heidelberg" },
-  { id: "rwth", name: "RWTH Aachen University", country: "germany", countryName: "Germany", location: "Aachen", ranking: 90, courses: ["Engineering", "Computer Science", "Natural Sciences", "Medicine"], type: "Public Research", logo: "RWTH" },
-  { id: "tuberlin", name: "Technical University of Berlin", country: "germany", countryName: "Germany", location: "Berlin", ranking: 106, courses: ["Engineering", "Computer Science", "Architecture", "Economics"], type: "Public Research", logo: "TUB" },
-  
-  // Australia
-  { id: "melbourne", name: "University of Melbourne", country: "australia", countryName: "Australia", location: "Melbourne, Victoria", ranking: 14, courses: ["Medicine", "Law", "Engineering", "Business"], type: "Public Research", logo: "Melbourne" },
-  { id: "sydney", name: "University of Sydney", country: "australia", countryName: "Australia", location: "Sydney, NSW", ranking: 19, courses: ["Medicine", "Law", "Engineering", "Arts"], type: "Public Research", logo: "Sydney" },
-  { id: "anu", name: "Australian National University", country: "australia", countryName: "Australia", location: "Canberra, ACT", ranking: 30, courses: ["International Relations", "Science", "Law", "Engineering"], type: "Public Research", logo: "ANU" },
-  { id: "unsw", name: "UNSW Sydney", country: "australia", countryName: "Australia", location: "Sydney, NSW", ranking: 19, courses: ["Engineering", "Business", "Law", "Design"], type: "Public Research", logo: "UNSW" },
-  { id: "monash", name: "Monash University", country: "australia", countryName: "Australia", location: "Melbourne, Victoria", ranking: 42, courses: ["Pharmacy", "Engineering", "Business", "IT"], type: "Public Research", logo: "Monash" },
-  
-  // New Zealand
-  { id: "auckland", name: "University of Auckland", country: "newzealand", countryName: "New Zealand", location: "Auckland", ranking: 68, courses: ["Engineering", "Business", "Medicine", "Arts"], type: "Public Research", logo: "Auckland" },
-  { id: "otago", name: "University of Otago", country: "newzealand", countryName: "New Zealand", location: "Dunedin", ranking: 206, courses: ["Medicine", "Dentistry", "Science", "Business"], type: "Public Research", logo: "Otago" },
-  { id: "victoria", name: "Victoria University of Wellington", country: "newzealand", countryName: "New Zealand", location: "Wellington", ranking: 241, courses: ["Law", "International Relations", "Design", "Film"], type: "Public Research", logo: "VUW" },
-  
-  // Austria
-  { id: "vienna", name: "University of Vienna", country: "austria", countryName: "Austria", location: "Vienna", ranking: 137, courses: ["Law", "Medicine", "Psychology", "Business"], type: "Public Research", logo: "Vienna" },
-  { id: "tuvienna", name: "TU Vienna", country: "austria", countryName: "Austria", location: "Vienna", ranking: 186, courses: ["Engineering", "Architecture", "Computer Science", "Physics"], type: "Public Research", logo: "TUW" },
-  { id: "innsbruck", name: "University of Innsbruck", country: "austria", countryName: "Austria", location: "Innsbruck", ranking: 266, courses: ["Sports Science", "Tourism", "Law", "Economics"], type: "Public Research", logo: "Innsbruck" },
-  
-  // Poland
-  { id: "warsaw", name: "University of Warsaw", country: "poland", countryName: "Poland", location: "Warsaw", ranking: 262, courses: ["Law", "Economics", "Psychology", "International Relations"], type: "Public Research", logo: "UW" },
-  { id: "jagiellonian", name: "Jagiellonian University", country: "poland", countryName: "Poland", location: "Krakow", ranking: 293, courses: ["Medicine", "Law", "Arts", "Science"], type: "Public Research", logo: "JU" },
-  { id: "warsawtech", name: "Warsaw University of Technology", country: "poland", countryName: "Poland", location: "Warsaw", ranking: 511, courses: ["Engineering", "Architecture", "Computer Science", "Electronics"], type: "Public Research", logo: "WUT" },
-];
-
-const countries = [
-  { id: "all", name: "All Countries", flag: "🌍" },
-  { id: "us", name: "United States", flag: "🇺🇸" },
-  { id: "uk", name: "United Kingdom", flag: "🇬🇧" },
-  { id: "canada", name: "Canada", flag: "🇨🇦" },
-  { id: "germany", name: "Germany", flag: "🇩🇪" },
-  { id: "australia", name: "Australia", flag: "🇦🇺" },
-  { id: "newzealand", name: "New Zealand", flag: "🇳🇿" },
-  { id: "austria", name: "Austria", flag: "🇦🇹" },
-  { id: "poland", name: "Poland", flag: "🇵🇱" },
-];
+import { universitiesData, countryImages, countries } from "@/data/universities";
 
 const UniversitiesPage = () => {
   const [searchParams] = useSearchParams();
   const initialCountry = searchParams.get("country") || "all";
   const [activeCountry, setActiveCountry] = useState(initialCountry);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
+  // For "All Countries" - rotate through country backgrounds
+  const countryKeys = Object.keys(countryImages).filter(k => k !== 'all');
+  
+  useEffect(() => {
+    if (activeCountry === "all") {
+      const interval = setInterval(() => {
+        setCurrentBgIndex((prev) => (prev + 1) % countryKeys.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [activeCountry]);
+
+  const currentBackground = activeCountry === "all" 
+    ? countryImages[countryKeys[currentBgIndex]]
+    : countryImages[activeCountry] || countryImages.all;
 
   const filteredUniversities = universitiesData.filter(uni => {
     const matchesCountry = activeCountry === "all" || uni.country === activeCountry;
     const matchesSearch = uni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         uni.courses.some(c => c.toLowerCase().includes(searchQuery.toLowerCase()));
+                         uni.courses.some(c => c.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                         uni.location.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCountry && matchesSearch;
   });
 
@@ -111,8 +59,27 @@ const UniversitiesPage = () => {
       <Header />
       
       <main>
-        {/* Hero Section */}
-        <section className="pt-20 hero-gradient relative overflow-hidden">
+        {/* Hero Section with Dynamic Background */}
+        <section className="pt-20 relative overflow-hidden min-h-[500px]">
+          {/* Animated Background */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentBackground}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              className="absolute inset-0"
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${currentBackground})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/30" />
+            </motion.div>
+          </AnimatePresence>
+          
           <div className="absolute inset-0 grid-pattern opacity-20" />
           
           <div className="container mx-auto px-4 relative z-10 py-16">
@@ -126,11 +93,11 @@ const UniversitiesPage = () => {
                 <GraduationCap className="w-4 h-4" />
                 University Explorer
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                 Find Your Dream University
               </h1>
-              <p className="text-lg text-white/60">
-                Explore 40+ top universities across 8 countries
+              <p className="text-lg text-white/70">
+                Explore {universitiesData.length}+ top universities across 8 countries
               </p>
             </motion.div>
 
@@ -145,10 +112,10 @@ const UniversitiesPage = () => {
                 <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
                 <Input
                   type="text"
-                  placeholder="Search universities or courses..."
+                  placeholder="Search universities, courses, or locations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-14 pr-5 h-14 text-base bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/40 rounded-2xl focus:bg-white/15 focus:border-white/30"
+                  className="pl-14 pr-5 h-14 text-base bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/40 rounded-2xl focus:bg-white/15 focus:border-white/30"
                 />
               </div>
             </motion.div>
@@ -167,7 +134,7 @@ const UniversitiesPage = () => {
                   className={cn(
                     "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
                     activeCountry === c.id
-                      ? "bg-accent text-white shadow-accent"
+                      ? "bg-accent text-white shadow-accent scale-105"
                       : "bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/10"
                   )}
                 >
@@ -195,10 +162,15 @@ const UniversitiesPage = () => {
             <div className="flex items-center justify-between mb-8">
               <p className="text-muted-foreground">
                 Showing <span className="font-semibold text-foreground">{filteredUniversities.length}</span> universities
+                {activeCountry !== "all" && (
+                  <span className="ml-1">
+                    in <span className="font-semibold text-foreground">{countries.find(c => c.id === activeCountry)?.name}</span>
+                  </span>
+                )}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredUniversities.map((uni, index) => (
                 <motion.div
                   key={uni.id}
@@ -207,95 +179,134 @@ const UniversitiesPage = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.03 }}
                 >
-                  <div className="university-card group h-full flex flex-col">
-                    {/* Header */}
-                    <div className="p-6 border-b border-border">
-                      <div className="flex items-start justify-between gap-4 mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shrink-0 text-white font-bold text-xs">
-                          {uni.logo}
-                        </div>
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-accent/10 text-accent text-xs font-semibold">
-                          <Star className="w-3 h-3 fill-accent" />
+                  <Link to={`/universities/${uni.id}`} className="block h-full">
+                    <div className="university-card group h-full flex flex-col">
+                      {/* Campus Image */}
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={uni.image} 
+                          alt={uni.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        
+                        {/* Ranking Badge */}
+                        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-accent/90 backdrop-blur-sm text-white text-xs font-bold">
+                          <Star className="w-3 h-3 fill-white" />
                           #{uni.ranking}
                         </div>
+                        
+                        {/* Logo Placeholder */}
+                        <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center text-primary font-bold text-xs">
+                          {uni.logo}
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-accent transition-colors line-clamp-2">
-                        {uni.name}
-                      </h3>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="text-lg">{getCountryFlag(uni.country)}</span>
-                        <span>{uni.location}</span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 flex-grow flex flex-col">
-                      <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-3">{uni.type}</p>
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {uni.courses.slice(0, 3).map((course, i) => (
-                          <span key={i} className="px-2 py-1 rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
-                            {course}
-                          </span>
-                        ))}
-                        {uni.courses.length > 3 && (
-                          <span className="px-2 py-1 rounded-md bg-secondary text-xs font-medium text-muted-foreground">
-                            +{uni.courses.length - 3}
-                          </span>
-                        )}
-                      </div>
-                      <div className="mt-auto">
-                        <Link to={`/universities/${uni.id}`}>
+                      
+                      {/* Content */}
+                      <div className="p-5 flex-grow flex flex-col">
+                        <div className="flex items-start gap-2 mb-3">
+                          <span className="text-lg">{getCountryFlag(uni.country)}</span>
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-lg text-foreground mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                              {uni.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground flex items-center gap-1">
+                              <MapPin className="w-3.5 h-3.5" />
+                              {uni.location}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-3">{uni.type}</p>
+                        
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {uni.courses.slice(0, 3).map((course, i) => (
+                            <span key={i} className="px-2 py-1 rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
+                              {course}
+                            </span>
+                          ))}
+                          {uni.courses.length > 3 && (
+                            <span className="px-2 py-1 rounded-md bg-secondary text-xs font-medium text-muted-foreground">
+                              +{uni.courses.length - 3}
+                            </span>
+                          )}
+                        </div>
+                        
+                        <div className="mt-auto pt-4 border-t border-border">
                           <Button variant="outline" size="sm" className="w-full group/btn">
                             Check Eligibility
                             <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
                           </Button>
-                        </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
-
-            {filteredUniversities.length === 0 && (
-              <div className="text-center py-20">
-                <div className="w-20 h-20 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-6">
-                  <GraduationCap className="w-10 h-10 text-muted-foreground/30" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">No universities found</h3>
-                <p className="text-muted-foreground">Try adjusting your search or filter criteria</p>
-              </div>
-            )}
           </div>
         </section>
 
-        {/* CTA */}
+        {/* Stats Section */}
         <section className="py-16 bg-secondary/30">
           <div className="container mx-auto px-4">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-2xl mx-auto text-center"
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Need Help Choosing?
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Our expert counselors can help you find the perfect university match based on your profile and goals.
-              </p>
-              <Link to="/enquiry">
-                <Button size="lg" className="font-semibold">
-                  Get Free Consultation
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </motion.div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="w-7 h-7 text-accent" />
+                </div>
+                <p className="text-3xl font-bold text-foreground mb-1">{universitiesData.length}+</p>
+                <p className="text-sm text-muted-foreground">Partner Universities</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-teal/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-7 h-7 text-teal" />
+                </div>
+                <p className="text-3xl font-bold text-foreground mb-1">10,000+</p>
+                <p className="text-sm text-muted-foreground">Students Placed</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-success/10 flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-7 h-7 text-success" />
+                </div>
+                <p className="text-3xl font-bold text-foreground mb-1">8</p>
+                <p className="text-sm text-muted-foreground">Countries</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-7 h-7 text-primary" />
+                </div>
+                <p className="text-3xl font-bold text-foreground mb-1">95%</p>
+                <p className="text-sm text-muted-foreground">Visa Success Rate</p>
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>
-
+      
       <Footer />
     </div>
   );

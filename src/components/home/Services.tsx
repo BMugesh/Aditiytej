@@ -21,6 +21,7 @@ const services = [
     description: "Expert guidance for university selection, course matching, and complete admission support across 8 countries.",
     href: "/services#education",
     gradient: "from-primary to-primary/80",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
   },
   {
     icon: Award,
@@ -28,6 +29,7 @@ const services = [
     description: "Discover merit-based, government, and university scholarships to fund your education.",
     href: "/services#scholarship",
     gradient: "from-accent to-accent/80",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80",
   },
   {
     icon: FileCheck,
@@ -35,6 +37,7 @@ const services = [
     description: "End-to-end visa support including documentation, mock interviews, and filing.",
     href: "/services#visa",
     gradient: "from-teal to-teal/80",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
   },
   {
     icon: Languages,
@@ -42,6 +45,7 @@ const services = [
     description: "IELTS, German, Japanese, and LangCert preparation with exam-focused modules.",
     href: "/services#language",
     gradient: "from-success to-success/80",
+    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80",
   },
   {
     icon: Briefcase,
@@ -49,6 +53,7 @@ const services = [
     description: "Access domestic jobs and international internships aligned with your goals.",
     href: "/services#placement-opportunities",
     gradient: "from-primary to-primary/80",
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80",
   },
   {
     icon: Users,
@@ -56,6 +61,7 @@ const services = [
     description: "Build public speaking, corporate etiquette, and leadership skills.",
     href: "/services#soft-skills",
     gradient: "from-accent to-accent/80",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
   },
   {
     icon: Target,
@@ -63,6 +69,7 @@ const services = [
     description: "Resume building, interview preparation, and strategic job search.",
     href: "/services#placement-assistance",
     gradient: "from-teal to-teal/80",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
   },
   {
     icon: Home,
@@ -70,6 +77,7 @@ const services = [
     description: "Accommodation help, registration, and local orientation support.",
     href: "/services#post-admission",
     gradient: "from-success to-success/80",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80",
   },
 ];
 
@@ -104,33 +112,48 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
               <Link 
                 to={service.href}
-                className="service-card group cursor-pointer h-full flex flex-col"
+                className="group block h-full"
               >
-                {/* Icon */}
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className="w-6 h-6 text-white" />
+                <div className="service-card h-full flex flex-col overflow-hidden">
+                  {/* Service Image */}
+                  <div className="relative h-40 overflow-hidden -mx-6 -mt-6 mb-5">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-60`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                    
+                    {/* Icon overlay */}
+                    <div className="absolute bottom-4 left-4">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <service.icon className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+                    {service.description}
+                  </p>
+                  
+                  {/* Link */}
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent group-hover:gap-2.5 transition-all">
+                    Learn More
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </span>
                 </div>
-                
-                {/* Content */}
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
-                  {service.description}
-                </p>
-                
-                {/* Link */}
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent group-hover:gap-2 transition-all">
-                  Learn More
-                  <ArrowUpRight className="w-4 h-4" />
-                </span>
               </Link>
             </motion.div>
           ))}
@@ -145,9 +168,9 @@ const Services = () => {
           className="text-center mt-14"
         >
           <Link to="/services">
-            <Button variant="outline" size="lg" className="font-semibold">
+            <Button variant="outline" size="lg" className="font-semibold group">
               View All Services
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </motion.div>
