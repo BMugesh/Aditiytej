@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @layer base {
   :root {
@@ -55,8 +55,8 @@
     --gradient-hero-subtle: linear-gradient(180deg, hsl(205 70% 12%) 0%, hsl(205 60% 18%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(21 100% 53%) 0%, hsl(28 100% 58%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
-    --gradient-dark-glass: linear-gradient(135deg, rgba(10,46,77,0.95) 0%, rgba(10,46,77,0.85) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    --gradient-dark-glass: linear-gradient(135deg, rgba(10, 46, 77, 0.95) 0%, rgba(10, 46, 77, 0.85) 100%);
 
     /* === PREMIUM SHADOWS === */
     --shadow-xs: 0 1px 2px 0 hsl(205 70% 12% / 0.03);
@@ -119,7 +119,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Inter', system-ui, sans-serif;
     @apply font-bold tracking-tight;
     letter-spacing: -0.02em;
@@ -142,6 +147,7 @@
 }
 
 @layer components {
+
   /* === PREMIUM HEADER === */
   .header-glass {
     @apply backdrop-blur-xl border-b;
@@ -296,6 +302,7 @@
 }
 
 @layer utilities {
+
   /* === CUSTOM SCROLLBAR === */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -320,6 +327,7 @@
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -331,6 +339,7 @@
       opacity: 0;
       transform: translateY(-20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -338,8 +347,13 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes slideInLeft {
@@ -347,6 +361,7 @@
       opacity: 0;
       transform: translateX(-30px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -358,6 +373,7 @@
       opacity: 0;
       transform: translateX(30px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -369,6 +385,7 @@
       opacity: 0;
       transform: scale(0.9);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
@@ -376,27 +393,49 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-15px);
+    }
   }
 
   @keyframes pulse-glow {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 0 0 hsl(21 100% 53% / 0.4);
     }
+
     50% {
       box-shadow: 0 0 0 15px hsl(21 100% 53% / 0);
     }
   }
 
   @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
   }
 
   @keyframes countUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .animate-fade-in {
@@ -438,14 +477,37 @@
   }
 
   /* Staggered Animation Delays */
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
-  .delay-600 { animation-delay: 600ms; }
-  .delay-700 { animation-delay: 700ms; }
-  .delay-800 { animation-delay: 800ms; }
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .delay-800 {
+    animation-delay: 800ms;
+  }
 
   .animate-fade-in-delay-1 {
     animation: fadeInUp 0.6s ease-out 0.1s forwards;
@@ -487,14 +549,14 @@
 
   /* === GRID PATTERN === */
   .grid-pattern {
-    background-image: 
+    background-image:
       linear-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px),
       linear-gradient(90deg, hsl(0 0% 100% / 0.03) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 
   .grid-pattern-light {
-    background-image: 
+    background-image:
       linear-gradient(hsl(205 70% 12% / 0.03) 1px, transparent 1px),
       linear-gradient(90deg, hsl(205 70% 12% / 0.03) 1px, transparent 1px);
     background-size: 48px 48px;
