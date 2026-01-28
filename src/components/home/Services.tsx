@@ -21,7 +21,7 @@ const services = [
     description: "Expert guidance for university selection, course matching, and complete admission support across 8 countries.",
     href: "/services#education",
     gradient: "from-primary to-primary/80",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
   },
   {
     icon: Award,
@@ -29,7 +29,7 @@ const services = [
     description: "Discover merit-based, government, and university scholarships to fund your education.",
     href: "/services#scholarship",
     gradient: "from-accent to-accent/80",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=800&q=80",
   },
   {
     icon: FileCheck,
@@ -37,7 +37,7 @@ const services = [
     description: "End-to-end visa support including documentation, mock interviews, and filing.",
     href: "/services#visa",
     gradient: "from-teal to-teal/80",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
   },
   {
     icon: Languages,
@@ -45,7 +45,7 @@ const services = [
     description: "IELTS, German, Japanese, and LangCert preparation with exam-focused modules.",
     href: "/services#language",
     gradient: "from-success to-success/80",
-    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80",
   },
   {
     icon: Briefcase,
@@ -53,7 +53,7 @@ const services = [
     description: "Access domestic jobs and international internships aligned with your goals.",
     href: "/services#placement-opportunities",
     gradient: "from-primary to-primary/80",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80",
   },
   {
     icon: Users,
@@ -61,7 +61,7 @@ const services = [
     description: "Build public speaking, corporate etiquette, and leadership skills.",
     href: "/services#soft-skills",
     gradient: "from-accent to-accent/80",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
   },
   {
     icon: Target,
@@ -69,7 +69,7 @@ const services = [
     description: "Resume building, interview preparation, and strategic job search.",
     href: "/services#placement-assistance",
     gradient: "from-teal to-teal/80",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80",
   },
   {
     icon: Home,
@@ -77,7 +77,7 @@ const services = [
     description: "Accommodation help, registration, and local orientation support.",
     href: "/services#post-admission",
     gradient: "from-success to-success/80",
-    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80",
   },
 ];
 

@@ -219,8 +219,8 @@ const EducationPage = () => {
                 alt={country.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-primary/30" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-primary/20" />
               <div className="absolute inset-0 grid-pattern opacity-20" />
             </motion.div>
           </AnimatePresence>
