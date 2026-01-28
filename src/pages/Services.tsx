@@ -27,6 +27,7 @@ const servicesData = [
     subtitle: "Complete University & Course Guidance",
     description: "Expert guidance for university selection, course matching, and complete admission support across 8 countries.",
     gradient: "from-primary to-primary/80",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80",
     process: [
       "Student profile analysis & goal assessment",
       "Country shortlisting based on preferences",
@@ -50,6 +51,7 @@ const servicesData = [
     subtitle: "Financial Aid & Merit Awards",
     description: "Discover merit-based, government, and university scholarships. We help you secure financial aid for your education.",
     gradient: "from-accent to-accent/80",
+    image: "https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=1200&q=80",
     process: [
       "Eligibility screening for available scholarships",
       "Scholarship discovery & matching",
@@ -72,6 +74,7 @@ const servicesData = [
     subtitle: "End-to-End Visa Support",
     description: "Comprehensive visa support including documentation review, mock interviews, and application filing.",
     gradient: "from-teal to-teal/80",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80",
     process: [
       "Offer letter verification & assessment",
       "Financial documentation guidance",
@@ -96,6 +99,7 @@ const servicesData = [
     subtitle: "IELTS, German, Japanese & More",
     description: "Comprehensive language preparation with academic, professional, and exam-focused modules.",
     gradient: "from-success to-success/80",
+    image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&q=80",
     languages: [
       { name: "IELTS", type: "English Proficiency" },
       { name: "German", type: "A1 to C1 Levels" },
@@ -117,6 +121,7 @@ const servicesData = [
     subtitle: "Jobs & Internships",
     description: "Access domestic jobs and international internships aligned with your career goals and education.",
     gradient: "from-primary to-primary/80",
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80",
     process: [
       "Skill assessment & gap analysis",
       "Career alignment with industry trends",
@@ -139,6 +144,7 @@ const servicesData = [
     subtitle: "Professional Development",
     description: "Build essential soft skills including public speaking, corporate etiquette, and leadership for global careers.",
     gradient: "from-accent to-accent/80",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80",
     skills: [
       "Public Speaking & Presentation",
       "Corporate Etiquette & Professionalism",
@@ -156,6 +162,7 @@ const servicesData = [
     subtitle: "Career Launch Support",
     description: "Complete job search support including resume building, interview preparation, and strategic job search.",
     gradient: "from-teal to-teal/80",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80",
     process: [
       "Resume building & optimization",
       "LinkedIn profile enhancement",
@@ -178,6 +185,7 @@ const servicesData = [
     subtitle: "Settlement Support",
     description: "Smooth transition support including accommodation help, country registration, and local orientation.",
     gradient: "from-success to-success/80",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&q=80",
     services: [
       "Accommodation search & booking assistance",
       "Airport pickup coordination",
@@ -197,7 +205,18 @@ const ServicesPage = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="pt-20 hero-gradient relative overflow-hidden">
+        <section className="pt-20 relative overflow-hidden min-h-[400px]">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80"
+              alt="Students collaborating"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-primary/20" />
+          </div>
+          
           <div className="absolute inset-0 grid-pattern opacity-20" />
           
           <div className="container mx-auto px-4 relative z-10 py-20">
@@ -214,7 +233,7 @@ const ServicesPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Complete Education & Career Solutions
               </h1>
-              <p className="text-lg text-white/60 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
                 From university selection to global placement — we provide comprehensive, transparent, and process-driven support at every step of your journey.
               </p>
             </motion.div>
@@ -246,18 +265,31 @@ const ServicesPage = () => {
                   className="scroll-mt-24"
                 >
                   <div className={`premium-card overflow-hidden ${index % 2 === 0 ? '' : 'bg-secondary/20'}`}>
+                    {/* Service Hero Image */}
+                    <div className="relative h-48 md:h-56 overflow-hidden">
+                      <img 
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-60`} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                      
+                      {/* Icon overlay */}
+                      <div className="absolute bottom-6 left-8">
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-xl`}>
+                          <service.icon className="w-7 h-7 text-white" />
+                        </div>
+                      </div>
+                    </div>
+                    
                     <div className="p-8 md:p-10">
                       {/* Header */}
-                      <div className="flex flex-col md:flex-row md:items-center gap-5 mb-8">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shrink-0`}>
-                          <service.icon className="w-8 h-8 text-white" />
-                        </div>
-                        <div>
-                          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-                            {service.title}
-                          </h2>
-                          <p className="text-muted-foreground">{service.subtitle}</p>
-                        </div>
+                      <div className="mb-6">
+                        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+                          {service.title}
+                        </h2>
+                        <p className="text-muted-foreground">{service.subtitle}</p>
                       </div>
 
                       {/* Description */}
