@@ -75,8 +75,8 @@ const UniversitiesPage = () => {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${currentBackground})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-primary/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
             </motion.div>
           </AnimatePresence>
 
