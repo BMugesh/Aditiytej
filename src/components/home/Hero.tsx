@@ -88,9 +88,9 @@ const Hero = () => {
               transform: 'scale(1.05)',
             }}
           />
-          {/* Premium Gradient Overlay - Reduced for better image visibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-primary/20" />
+          {/* Premium Gradient Overlay - Minimal for maximum image visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/40 to-primary/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 
