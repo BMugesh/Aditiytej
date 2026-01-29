@@ -15,6 +15,7 @@ import {
   Clock,
   Star,
   ArrowRight,
+  ArrowLeft,
   Building,
   TrendingUp,
   BookOpen,
@@ -70,6 +71,17 @@ const UniversityDetailPage = () => {
               transition={{ duration: 0.5 }}
               className="max-w-4xl"
             >
+              {/* Back Button */}
+              <Link
+                to="/universities"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-4 group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all">
+                  <ArrowLeft className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-medium">Back to Universities</span>
+              </Link>
+
               {/* Breadcrumb */}
               <div className="flex items-center gap-2 text-sm text-white/80 mb-6">
                 <Link to="/universities" className="hover:text-white transition-colors">Universities</Link>
