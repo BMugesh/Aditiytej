@@ -59,8 +59,8 @@ const UniversityDetailPage = () => {
               alt={university.name}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/15" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-slate-900/30 to-transparent" />
           </div>
 
           <div className="container mx-auto px-4 relative z-10 py-20">
@@ -71,10 +71,10 @@ const UniversityDetailPage = () => {
               className="max-w-4xl"
             >
               {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Link to="/universities" className="hover:text-primary transition-colors">Universities</Link>
+              <div className="flex items-center gap-2 text-sm text-white/80 mb-6">
+                <Link to="/universities" className="hover:text-white transition-colors">Universities</Link>
                 <span>/</span>
-                <span className="text-foreground font-medium">{university.name}</span>
+                <span className="text-white font-medium">{university.name}</span>
               </div>
 
               {/* Logo & Title */}
@@ -93,20 +93,20 @@ const UniversityDetailPage = () => {
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-2">
                     {university.name}
                   </h1>
-                  <div className="flex items-center gap-4 text-muted-foreground font-medium">
+                  <div className="flex items-center gap-4 text-white/90 font-medium">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-primary" />
+                      <MapPin className="w-4 h-4 text-white" />
                       {university.location}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Building className="w-4 h-4 text-primary" />
+                      <Building className="w-4 h-4 text-white" />
                       {university.type}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-relaxed">
+              <p className="text-lg text-white/90 max-w-3xl mb-8 leading-relaxed">
                 {university.description}
               </p>
 
