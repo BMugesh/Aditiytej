@@ -47,11 +47,7 @@ export const universitiesData: University[] = [
     courses: ["Computer Science", "Engineering", "Physics", "AI/ML", "Mathematics", "Economics"],
     type: "Private Research University",
     logo: "MIT",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1617112848923-cc2234396ad7?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://images.unsplash.com/photo-1617112848923-cc2234396ad7?q=80&w=1200&auto=format&fit=crop",
     description: "MIT is a world-renowned research university known for excellence in science, engineering, and technology. It consistently ranks as one of the top universities globally.",
     founded: "1861",
     students: "11,500+",
@@ -413,7 +409,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Natural Sciences", "Mathematics", "Economics", "Medicine", "Law"],
     type: "Public Research University",
     logo: "Cambridge",
-    image: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/King's_College_Chapel_from_the_Backs.jpg&w=1200&q=80",
     description: "Cambridge is one of the world's oldest and most prestigious universities, known for producing Nobel laureates and world leaders.",
     founded: "1209",
     students: "24,000+",
@@ -445,7 +441,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Medicine", "Business", "Science", "Computing", "AI"],
     type: "Public Research University",
     logo: "Imperial",
-    image: "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/The_Queen's_Tower_London.jpg&w=1200&q=80",
     description: "Imperial is a world-leading science and technology university, consistently ranked among the top 10 globally.",
     founded: "1907",
     students: "19,000+",
@@ -477,11 +473,7 @@ export const universitiesData: University[] = [
     courses: ["Economics", "Politics", "Law", "Finance", "International Relations", "Management"],
     type: "Public Research University",
     logo: "LSE",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1574169208507-84376144848b?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/London_School_of_Economics_Old_Building.jpg&w=1200&q=80",
     description: "LSE is the world's leading social science university, known for producing world leaders and Nobel laureates.",
     founded: "1895",
     students: "12,000+",
@@ -513,11 +505,7 @@ export const universitiesData: University[] = [
     courses: ["Architecture", "Medicine", "Law", "Engineering", "Arts", "Psychology"],
     type: "Public Research University",
     logo: "UCL",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1626266061368-46a8f578ddd6?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/UCL_Main_Building_Portico_01.jpg&w=1200&q=80",
     description: "UCL is London's leading multidisciplinary university, known for its pioneering spirit and diverse academic offerings.",
     founded: "1826",
     students: "43,000+",
@@ -549,11 +537,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "AI", "Informatics", "Business", "Law", "Veterinary Medicine"],
     type: "Public Research University",
     logo: "Edinburgh",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1555990151-6893b827727c?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/University_of_Edinburgh_-_Old_College_-_2015.jpg&w=1200&q=80",
     description: "Edinburgh is one of the world's top universities, known for its AI research and beautiful historic campus.",
     founded: "1582",
     students: "35,000+",
@@ -585,7 +569,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Business", "Computer Science", "Medicine", "Physics", "Chemistry"],
     type: "Public Research University",
     logo: "Manchester",
-    image: "https://images.unsplash.com/photo-1555883006-0f5a0915a80f?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Whitworth_Hall,_University_of_Manchester.jpg&w=1200&q=80",
     description: "Manchester is a leading research university known for its Nobel Prize-winning discoveries and strong industry connections.",
     founded: "1824",
     students: "40,000+",
@@ -617,7 +601,7 @@ export const universitiesData: University[] = [
     courses: ["Business", "Economics", "Engineering", "Computer Science", "Mathematics", "Politics"],
     type: "Public Research University",
     logo: "Warwick",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/The_Piazza,_University_of_Warwick.jpg&w=1200&q=80",
     description: "Warwick is a world-class university known for its strong business school and excellent graduate employment.",
     founded: "1965",
     students: "28,000+",
@@ -649,7 +633,7 @@ export const universitiesData: University[] = [
     courses: ["Law", "Medicine", "International Relations", "Psychology", "Philosophy", "Nursing"],
     type: "Public Research University",
     logo: "KCL",
-    image: "https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Somerset_House_East_Wing.jpg&w=1200&q=80",
     description: "King's is one of the oldest universities in England, located in the heart of London with excellent healthcare and law programs.",
     founded: "1829",
     students: "33,000+",
@@ -681,11 +665,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Veterinary Science", "Law", "Arts", "Computer Science", "Physics"],
     type: "Public Research University",
     logo: "Bristol",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1611082695026-c22292f7f90e?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Wills_Memorial_Building,_Bristol_University.jpg&w=1200&q=80",
     description: "Bristol is a Russell Group university known for its research excellence and strong industry partnerships.",
     founded: "1876",
     students: "27,000+",
@@ -719,11 +699,7 @@ export const universitiesData: University[] = [
     courses: ["Computer Science", "Engineering", "Business", "Medicine", "Law", "Arts"],
     type: "Public Research University",
     logo: "UofT",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1590522100874-8b5e948c2635?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/University_College_Toronto_south_view.jpg&w=1200&q=80",
     description: "U of T is Canada's top university, known for groundbreaking research in AI and medicine.",
     founded: "1827",
     students: "97,000+",
@@ -755,11 +731,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Forestry", "Business", "Computer Science", "Medicine", "Arts"],
     type: "Public Research University",
     logo: "UBC",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1527027557458-75765715947b?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1609825488888-3a766db05542?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/UBC_Rose_Garden_and_Flag_Pole_Plaza.jpg&w=1200&q=80",
     description: "UBC is one of the world's top research universities, located in beautiful Vancouver.",
     founded: "1908",
     students: "66,000+",
@@ -791,11 +763,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Law", "Engineering", "Music", "Business", "Arts"],
     type: "Public Research University",
     logo: "McGill",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1541339902099-1c97671efa4e?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1559135197-8a45ea74d367?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/McGill_Arts_Building_2011.jpg&w=1200&q=80",
     description: "McGill is one of Canada's most prestigious universities, known for its medical school and diverse student body.",
     founded: "1821",
     students: "39,000+",
@@ -827,11 +795,7 @@ export const universitiesData: University[] = [
     courses: ["Computer Science", "Engineering", "Mathematics", "Actuarial Science", "Quantum Computing", "AI"],
     type: "Public Research University",
     logo: "Waterloo",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1581333100576-b73bbe79cde5?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Dana_Porter_Library.jpg&w=1200&q=80",
     description: "Waterloo is known for its world-leading co-op program and is a top destination for tech talent.",
     founded: "1957",
     students: "42,000+",
@@ -863,11 +827,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "AI", "Business", "Health Sciences", "Energy", "Agriculture"],
     type: "Public Research University",
     logo: "Alberta",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1579389083175-247ef70301c2?q=80&w=1200&auto=format&fit=crop",
-=======
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/University_of_Alberta_Old_Arts_Building.jpg&w=1200&q=80",
     description: "U of A is a leading research university known for its AI and energy research programs.",
     founded: "1908",
     students: "40,000+",
@@ -901,7 +861,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Computer Science", "Physics", "Architecture", "Mathematics", "Chemistry"],
     type: "Public Research University",
     logo: "ETH",
-    image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/ETH_Zurich_Hauptgebaeude.jpg&w=1200&q=80",
     description: "ETH Zurich is one of the world's leading universities in science and technology, known for its cutting-edge research.",
     founded: "1855",
     students: "22,000+",
@@ -933,7 +893,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Computer Science", "Life Sciences", "Mathematics", "Physics", "Architecture"],
     type: "Public Research University",
     logo: "EPFL",
-    image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Rolex_Learning_Center_EPFL_01.jpg&w=1200&q=80",
     description: "EPFL is a cosmopolitan research university in Lausanne that specializes in natural sciences and engineering.",
     founded: "1853",
     students: "11,000+",
@@ -965,11 +925,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Computer Science", "Physics", "Chemistry", "Medicine", "Business"],
     type: "Public Research University",
     logo: "TUM",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1589828923233-fa349525c04f?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/TUM_Innenhof.jpg&w=1200&q=80",
     description: "TUM is one of Europe's top universities, known for its entrepreneurial spirit and strong links to industry.",
     founded: "1868",
     students: "48,000+",
@@ -1001,11 +957,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Law", "Physics", "Humanities", "Economics", "Biology"],
     type: "Public Research University",
     logo: "LMU",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1592837380293-8557997841f4?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Geschwister-Scholl-Platz_LMU_München.jpg&w=1200&q=80",
     description: "LMU is one of Germany's oldest and most prestigious universities, known for its research in humanities and sciences.",
     founded: "1472",
     students: "52,000+",
@@ -1037,11 +989,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Law", "Humanities", "Physics", "Biology", "Chemistry"],
     type: "Public Research University",
     logo: "Heidelberg",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1506540050868-2432d6ce6c9f?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Alte_Universität_Heidelberg.jpg&w=1200&q=80",
     description: "Heidelberg is Germany's oldest university and a leading research institution in Europe.",
     founded: "1386",
     students: "29,000+",
@@ -1073,7 +1021,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Architecture", "Design", "Computer Science", "Aerospace", "Physics"],
     type: "Public Research University",
     logo: "Delft",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/TU_Delft_Library.jpg&w=1200&q=80",
     description: "TU Delft is the oldest and largest Dutch public technical university, known for its engineering and design programs.",
     founded: "1842",
     students: "25,000+",
@@ -1105,11 +1053,7 @@ export const universitiesData: University[] = [
     courses: ["Media", "Communication", "Social Sciences", "Economics", "Law", "Psychology"],
     type: "Public Research University",
     logo: "UvA",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Maagdenhuis_Amsterdam.jpg&w=1200&q=80",
     description: "UvA is a leading European research university, known for its communication science and social science programs.",
     founded: "1632",
     students: "34,000+",
@@ -1141,11 +1085,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Biomedicine", "Public Health", "Psychology", "Dentistry", "Nursing"],
     type: "Public Research University",
     logo: "Karolinska",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Aula_Medica_Karolinska_Institutet.jpg&w=1200&q=80",
     description: "Karolinska Institute is one of the world's leading medical universities and home to the Nobel Assembly.",
     founded: "1810",
     students: "6,000+",
@@ -1179,11 +1119,7 @@ export const universitiesData: University[] = [
     courses: ["Law", "Business", "Medicine", "Education", "Engineering", "Arts"],
     type: "Public Research University",
     logo: "UniMelb",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1545622783-a006c79d14a6?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1514395462725-fb4566210144?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/The_Old_Arts_Building,_University_of_Melbourne.jpg&w=1200&q=80",
     description: "The University of Melbourne is Australia's leading comprehensive research university, located in the heart of Melbourne.",
     founded: "1853",
     students: "52,000+",
@@ -1215,11 +1151,7 @@ export const universitiesData: University[] = [
     courses: ["Politics", "International Relations", "Public Policy", "Science", "Law", "Economics"],
     type: "Public Research University",
     logo: "ANU",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1525010620857-bfb6c1eb234c?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/JCSMR_ANU_Entrance.jpg&w=1200&q=80",
     description: "ANU is Australia's national university, known for its strong focus on research and its campus in the nation's capital.",
     founded: "1946",
     students: "25,000+",
@@ -1251,11 +1183,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Law", "Business", "Engineering", "Arts", "Architecture"],
     type: "Public Research University",
     logo: "USYD",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1595085352610-d8ab1d820641?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_University_Main_Quadrangle.jpg&w=1200&q=80",
     description: "USYD is Australia's first university, known for its stunning campus and high academic standing across all disciplines.",
     founded: "1850",
     students: "73,000+",
@@ -1287,11 +1215,7 @@ export const universitiesData: University[] = [
     courses: ["Science", "Engineering", "Agriculture", "Medicine", "Business", "Environment"],
     type: "Public Research University",
     logo: "UQ",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1524275037599-795fa7218685?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1524820197278-540916411e20?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/The_Great_Court,_University_of_Queensland.jpg&w=1200&q=80",
     description: "UQ is a top-tier research university in Brisbane, known for its beautiful St Lucia campus and strong focus on science and research.",
     founded: "1909",
     students: "55,000+",
@@ -1325,7 +1249,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Business", "Medicine", "Arts", "Science", "Law"],
     type: "Public Research University",
     logo: "Auckland",
-    image: "https://images.unsplash.com/photo-1616137452601-574227c88b77?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Auckland_University_Clocktower.jpg&w=1200&q=80",
     description: "Auckland is New Zealand's largest and highest-ranked university with a beautiful urban campus.",
     founded: "1883",
     students: "42,000+",
@@ -1357,11 +1281,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Dentistry", "Science", "Business", "Arts", "Health Sciences"],
     type: "Public Research University",
     logo: "Otago",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1589873325608-8f5370364f34?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1531168556467-80aace0d0144?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Registry_Building_Otago_University.jpg&w=1200&q=80",
     description: "Otago is New Zealand's oldest university, famous for its medical school and vibrant student life.",
     founded: "1869",
     students: "21,000+",
@@ -1393,11 +1313,7 @@ export const universitiesData: University[] = [
     courses: ["Law", "International Relations", "Design", "Film", "Public Policy", "Computer Science"],
     type: "Public Research University",
     logo: "VUW",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1589802829985-817e51171b92?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1589871973318-9ca1258faa5d?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Hunter_Building_VUW.jpg&w=1200&q=80",
     description: "Victoria is located in New Zealand's capital and is known for law, film, and government connections.",
     founded: "1897",
     students: "22,000+",
@@ -1431,11 +1347,7 @@ export const universitiesData: University[] = [
     courses: ["Law", "Medicine", "Psychology", "Business", "Philosophy", "History"],
     type: "Public Research University",
     logo: "Vienna",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1551634979-2b11f8c946fe?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1609619385076-36a873425636?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Universität_Wien_Hauptgebäude.jpg&w=1200&q=80",
     description: "The University of Vienna is one of the oldest and largest universities in Europe with a rich academic tradition.",
     founded: "1365",
     students: "90,000+",
@@ -1468,7 +1380,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Architecture", "Computer Science", "Physics", "Mathematics", "Chemistry"],
     type: "Public Research University",
     logo: "TUW",
-    image: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/TU_Wien_Hauptgebäude.jpg&w=1200&q=80",
     description: "TU Vienna is Austria's largest research and educational institution in the natural sciences and technology.",
     founded: "1815",
     students: "28,000+",
@@ -1500,7 +1412,7 @@ export const universitiesData: University[] = [
     courses: ["Sports Science", "Tourism", "Law", "Economics", "Physics", "Atmospheric Sciences"],
     type: "Public Research University",
     logo: "Innsbruck",
-    image: "https://images.unsplash.com/photo-1550586678-f7b28d6ae68a?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Universität_Innsbruck_Hauptgebäude.jpg&w=1200&q=80",
     description: "Innsbruck is known for its alpine location and excellence in sports science and atmospheric research.",
     founded: "1669",
     students: "28,000+",
@@ -1534,7 +1446,7 @@ export const universitiesData: University[] = [
     courses: ["Law", "Economics", "Psychology", "International Relations", "Physics", "Mathematics"],
     type: "Public Research University",
     logo: "UW",
-    image: "https://images.unsplash.com/photo-1607427293702-036933bbf746?w=1200&q=80",
+    image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Brama_Główna_Uniwersytetu_Warszawskiego.jpg&w=1200&q=80",
     description: "The University of Warsaw is Poland's largest and most prestigious university.",
     founded: "1816",
     students: "44,000+",
@@ -1566,11 +1478,7 @@ export const universitiesData: University[] = [
     courses: ["Medicine", "Law", "Arts", "Science", "Philosophy", "History"],
     type: "Public Research University",
     logo: "JU",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1605152276897-4f618f831968?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Collegium_Maius_courtyard.jpg&w=1200&q=80",
     description: "Jagiellonian is one of the oldest universities in the world and Poland's most prestigious institution.",
     founded: "1364",
     students: "40,000+",
@@ -1602,11 +1510,7 @@ export const universitiesData: University[] = [
     courses: ["Engineering", "Architecture", "Computer Science", "Electronics", "Civil Engineering", "Aerospace"],
     type: "Public Research University",
     logo: "WUT",
-<<<<<<< HEAD
-    image: "https://images.unsplash.com/photo-1506456070628-9844c8567554?w=1200&q=80",
-=======
-    image: "https://images.unsplash.com/photo-1548506542-bb5c7d2a1c2c?w=1200&q=80",
->>>>>>> 10c40057a820a0e83745a1515a299bcfb20eba3c
+image: "https://wsrv.nl/?url=https://commons.wikimedia.org/wiki/Special:FilePath/Politechnika_Warszawska_Gmach_Glowny.jpg&w=1200&q=80",
     description: "Warsaw Tech is Poland's leading technical university with strong industry connections.",
     founded: "1826",
     students: "30,000+",
